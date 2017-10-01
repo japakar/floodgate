@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>What everything does</title>
+</head>
+<body>
+<main>
+<h1>What everything does</h1>
+<dl>
+<dt>addresses/</dt>
+<dd>Stores the claim timestamp of every user address to discourage obvious cheaters. (I recommend cleaning this folder out once per day to save space.)</dd>
+<dt>referrers/</dt>
+<dd>Saves the referrer of each address so that they still get paid if a user later visits without using the reflink.</dd>
+<dt>users/</dt>
+<dd>Stores the claim timestamp of every unique user on FaucetHUB to prevent cheating.</dd>
+<dt>441.php</dt>
+<dd>An error page explaining what is going on if the faucet is overloaded. (Too many claims in a short period of time, the faucet will stop paying out for a minute or so.)</dd>
+<dd>If this happens often, you can <a href="https://faucethub.io/ticket/fh">open a support ticket</a> and ask mexicantarget to increase the limit slightly.</dd>
+<dt>claim.php</dt>
+<dd>The claim page, where the magic happens.</dd>
+<dt>config.php</dt>
+<dd><strong>All the settings are in this file.</strong></dd>
+<dd>In the faucet_source.zip file, it is renamed to &ldquo;config.template.php&rdquo;. Just rename it after you edit it.</dd>
+<dt>index.php</dt>
+<dd>The first page people see, serves as the entry point to the faucet.</dd>
+<dt>main.css</dt>
+<dd>Customize the site style.</dd>
+<dt>verify.php</dt>
+<dd>Checks if the CAPTCHA was solved.</dd>
+</dl>
+<dl>
+<dt>ads.i.php</dt>
+<dd>Included at the bottom of the claim page, for ads to be shown a ton of times.</dd>
+<dt>ads_q.i.php</dt>
+<dd>For &lsquo;quality&rsquo; ads &mdash; ads that shouldn&#700;t be shown on the automatic pages.</dd>
+<dt>iframetraffic.i.php</dt>
+<dd>Put sponsored sites here.</dd>
+<dt>navbar.i.php</dt>
+<dd>Contents of the top navbar.</dd>
+</dl>
+<p>(all other files are unnecessary)</p>
+<p>There, now that you know what everything does, modify the script, add your ads to the pages, and release another beautiful complexity-free (for the users, anyway) faucet into the wild!</p>
+<p><strong>Make sure that the faucet is set up under the &ldquo;PTP&rdquo; category on FaucetHUB&#700;s faucet manager page, or users could get their accounts frozen for claiming too often!</strong></p>
+<hr/>
+<ul>
+<li><a href="http://www.geekbasic.com/blkads">BLKAds</a> is a good ad to put on the claim page. Just add the following code: <code>&lt;iframe style="height:240px;width:100%" src="http://www.geekbasic.com/blkads/index.php?r=<var>YOUR_BLK_ADDRESS</var>"&gt;&lt;/iframe&gt;</code> and it will pay you through FaucetHUB!</li>
+</ul>
+</main>
+</body>
+</html>
