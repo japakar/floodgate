@@ -1,4 +1,5 @@
 <?php
+  $cfg_MOTD = '<p>This is a brand new floodgate!</p>'; // You can put a message here.
   $cfg_cookie_key = '(its a secret)'; // Change this every 24 hours.
 
   $cfg_refresh_time = 60 * 5; // Payout time in seconds.

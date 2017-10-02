@@ -255,23 +255,23 @@
             }
 
             if ($referrer_currency == 'BCH') {
-              $faucethub_ref = new FaucetHub($api_key, 'BCH');
+              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'BCH');
             } else if ($referrer_currency == 'BLK') {
-              $faucethub_ref = new FaucetHub($api_key, 'BLK');
+              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'BLK');
             } else if ($referrer_currency == 'BTC') {
-              $faucethub_ref = new FaucetHub($api_key, 'BTC');
+              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'BTC');
             } else if ($referrer_currency == 'DASH') {
-              $faucethub_ref = new FaucetHub($api_key, 'DASH');
+              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'DASH');
             } else if ($referrer_currency == 'DOGE') {
-              $faucethub_ref = new FaucetHub($api_key, 'DOGE');
+              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'DOGE');
             } else if ($referrer_currency == 'ETH') {
-              $faucethub_ref = new FaucetHub($api_key, 'ETH');
+              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'ETH');
             } else if ($referrer_currency == 'LTC') {
-              $faucethub_ref = new FaucetHub($api_key, 'LTC');
+              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'LTC');
             } else if ($referrer_currency == 'PPC') {
-              $faucethub_ref = new FaucetHub($api_key, 'PPC');
+              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'PPC');
             } else if ($referrer_currency == 'XPM') {
-              $faucethub_ref = new FaucetHub($api_key, 'XPM');
+              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'XPM');
             } else {
               $errmsg = '<p>Invalid referrer currency.</p>';
               goto end_payout;
@@ -322,7 +322,7 @@
 <?php
   if ($paid) {
     if ($result['success'] === true) {
-      echo '<meta http-equiv="refresh" content="' . $cfg_real_refresh_time . '"/>';
+      echo '<script type="text/javascript">setTimeout("location.reload(true);",' . ($cfg_real_refresh_time * 1000) . ');</script>';
     } else {
       if (json_decode($result['response'], true)['status'] == 441) {
         $overload = true;
@@ -333,7 +333,7 @@
     echo '<meta http-equiv="refresh" content="2;url=' . $cfg_site_url . '/441.php"/>';
   }
   if ($too_fast) {
-    echo '<meta http-equiv="refresh" content="' . $cfg_real_refresh_time . '"/>';
+    echo '<script type="text/javascript">setTimeout("location.reload(true);",' . ($cfg_real_refresh_time * 1000) . ');</script>';
   }
 ?>
 <link rel="stylesheet" href="/main.css"/>

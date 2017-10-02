@@ -33,6 +33,7 @@
  <p>There&#700;s no timers or CAPTCHAs (apart from the one on this page); this is one of the leakiest faucets out there!</p>
  <p>(This faucet requires your address to be linked to a <a href="http://faucethub.io/r/10082526">FaucetHUB account</a>)</p>
  <p>(If the payout rates seem low, just remember that you get out just as much as you put in, and this faucet is much less &ldquo;labor-intensive&rdquo; than most.)</p>
+ <aside><?php echo $cfg_MOTD; ?></aside>
  <div style="padding-left: 1em">
   <?php
     if ($captcha_done) {
