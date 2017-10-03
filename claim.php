@@ -3,7 +3,7 @@
   if ($_COOKIE[$cfg_fh_username . '_captcha_key'] != $cfg_cookie_key) {die('Key expired. Please go back and do the CAPTCHA at ' . $cfg_site_url . '/index.php please! (It is the only way to keep bots out!)');}
   // TODO: put the claim timestamps in /tmp/* instead of ./*
 
-  $amount = rand(8, 10) / 10;
+  $amount = rand(5, 13) / 10;
 
   header('X-From: sheshiresat with love');
   date_default_timezone_set('UTC');
@@ -337,6 +337,7 @@
   }
 ?>
 <link rel="stylesheet" href="/main.css"/>
+<?php include 'head.i.php'; ?>
 </head>
 <body>
 <header>
@@ -386,12 +387,10 @@
 
 
 <hr/>
-<h2>Some sites that I felt like advertising (They&#700;re good!)</h2>
 <?php include 'iframetraffic.i.php'; ?>
 </main>
 <footer>
 <?php include 'ads.i.php'; ?>
 </footer>
-<script type="text/javascript"> (function() { var trackingurl = 'https://load.jsecoin.com/load/14955/sheshiresat.heliohost.org/0/0/'; var d=document, j=d.createElement('script'), s=d.getElementsByTagName('script')[0]; j.type='text/javascript'; j.async=true; j.defer=true; j.src=trackingurl; s.parentNode.insertBefore(j,s); })(); </script>
 </body>
 </html>

@@ -4,6 +4,7 @@
 <head>
  <title>Faucet Overloaded</title>
  <link rel="stylesheet" href="/main.css"/>
+ <?php include 'head.i.php'; ?>
 </head>
 <body>
 <header>

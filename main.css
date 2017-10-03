@@ -1,10 +1,31 @@
 /* Put "font-size" in ":root", everything else is relative. */
 
+@keyframes RAINBOW {
+  0% {
+    color: #333;
+  }
+  20% {
+    color:#06C;
+  }
+  40% {
+    color:#090;
+  }
+  60% {
+    color:#FC0;
+  }
+  80% {
+    color:#F00;
+  }
+  100% {
+    color:#606;
+  }
+}
+
 /* :root {{{ */
 :root {
     background-attachment: scroll;
     background-color: #FFFFFF;
-    background-image: linear-gradient(to bottom, #000000 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to bottom, #333 0%, #06C 20%, #09C 40%, #FC0 60%, #F00 80%, #606 100%);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

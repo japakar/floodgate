@@ -1,6 +1,6 @@
 <?php
   $cfg_MOTD = '<p>This is a brand new floodgate!</p>'; // You can put a message here.
-  $cfg_cookie_key = '(its a secret)'; // Change this every 24 hours.
+  $cfg_cookie_key = '(any string you feel like)'; // Change this every 24 hours or so.
 
   $cfg_refresh_time = 60 * 5; // Payout time in seconds.
   $cfg_real_refresh_time = 40; // Refresh time of the claim page.
@@ -32,6 +32,6 @@
   $cfg_coinhive_secret = 'XXXREDACTEDXXXXXXXXGiyiRBH7HTi6C';
 
   $cfg_fh_username = '0xc9'; // Your FaucetHUB username.
-  $cfg_site_name = '0xC9&#700;s Floodgate v2.9.2 / Murphy&#700;s Law Prover'; // The faucet name.
+  $cfg_site_name = 'Copy of 0xC9&#700;s Floodgate v2.10.0 / Movin&#700; on up!'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet.
 ?>

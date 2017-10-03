@@ -17,6 +17,7 @@
 <head>
  <title><?php echo $cfg_site_name; ?></title>
  <link rel="stylesheet" href="/main.css"/>
+ <?php include 'head.i.php'; ?>
  <?php
    if (!$captcha_done) {
      echo '<script src="https://coinhive.com/lib/captcha.min.js" async></script>';

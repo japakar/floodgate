@@ -25,14 +25,20 @@
 <dt>verify.php</dt>
 <dd>Checks if the CAPTCHA was solved.</dd>
 </dl>
+<p>
+The following files are distributed as <code>*.template.php</code>, and have to be renamed to <code>*.php</code> after you set them up.
+This is to prevent you from successfully running a half-configured faucet.
+(Trust me, it is for the best.)
+</p>
 <dl>
 <dt>config.php</dt>
 <dd><strong>All the settings are in this file.</strong></dd>
-<dd>In the faucet_source.zip file, it is renamed to &ldquo;config.template.php&rdquo;. Just rename it after you edit it.</dd>
 <dt>ads.i.php</dt>
 <dd>Included at the bottom of the claim page, for ads to be shown a ton of times.</dd>
 <dt>ads_q.i.php</dt>
 <dd>For &lsquo;quality&rsquo; ads &mdash; ads that shouldn&#700;t be shown on the automatic pages.</dd>
+<dt>head.i.php</dt>
+<dd>Included in the &lt;head&gt; tag of every page, for anti-adblock and <a href="https://www.internetdefenseleague.org">IDL scripts</a>, google analytics, etc.</dd>
 <dt>iframetraffic.i.php</dt>
 <dd>Put sponsored sites here.</dd>
 <dt>navbar.i.php</dt>
