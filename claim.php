@@ -1,6 +1,12 @@
 <?php
   require 'config.php';
-  if ($_COOKIE[$cfg_fh_username . '_captcha_key'] != $cfg_cookie_key) {die('Key expired. Please go back and do the CAPTCHA at ' . $cfg_site_url . '/index.php please! (It is the only way to keep bots out!)');}
+
+  if ($cfg_use_captcha) {
+    if (!captcha_done(true)) {
+      die('Key expired. Please go back and do the CAPTCHA at ' . $cfg_site_url . '/index.php please! (It is the only way to keep bots out!)');
+    }
+  }
+
   // TODO: put the claim timestamps in /tmp/* instead of ./*
 
   $amount = rand(5, 13) / 10;
@@ -340,12 +346,9 @@
 <?php include 'head.i.php'; ?>
 </head>
 <body>
-<header>
-<?php include 'navbar.i.php'; ?>
-</header>
+<header><?php include 'navbar.i.php'; ?></header>
 <main>
 <h1><?php echo $cfg_site_name; ?></h1>
-<noscript><p>Please enable javascript / disable your ad blocker, or this faucet will dry up!</p></noscript>
 <?php
   if ($paid) {
     echo $result['html'];
@@ -384,8 +387,6 @@
     }
   }
 ?>
-
-
 <hr/>
 <?php include 'iframetraffic.i.php'; ?>
 </main>

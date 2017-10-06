@@ -19,36 +19,30 @@ if (isset($_POST['miner'])) {
   $claim_url = $claim_url . '&miner=' . htmlspecialchars(stripslashes($_POST['miner']));
 }
 
-$post_data = [
-	'secret' => $cfg_coinhive_secret,
-	'token' => $_POST['coinhive-captcha-token'],
-	'hashes' => 256
-];
+if ($cfg_use_captcha) {
+  if (!captcha_done(false)) {
+    $post_data = [
+      'secret' => $cfg_coinhive_captcha_secret,
+      'token' => $_POST['coinhive-captcha-token'],
+      'hashes' => (256 * $cfg_captcha_difficulty)
+    ];
 
-$post_context = stream_context_create([
-	'http' => [
-		'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-		'method'  => 'POST',
-		'content' => http_build_query($post_data)
-	]
-]);
+    $post_context = stream_context_create([
+      'http' => [
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method'  => 'POST',
+        'content' => http_build_query($post_data)
+      ]
+    ]);
 
-$url = 'https://api.coinhive.com/token/verify';
-$response = json_decode(file_get_contents($url, false, $post_context));
+    $url = 'https://api.coinhive.com/token/verify';
+    $response = json_decode(file_get_contents($url, false, $post_context));
 
-if ($response && $response->success) {
-  setcookie($cfg_fh_username . '_captcha_key', $cfg_cookie_key, time() + (86400 * 2));
-} else {die('Failed to verify CAPTCHA.');}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Redirecting&hellip;</title>
-<meta http-equiv="refresh" content="2;url=<?php echo $claim_url; ?>"/>
-</head>
-<body>
-<main>
-<p><a href="<?php echo $claim_url; ?>">Click here if you are not automatically redirected.</a></p>
-</main>
-</body>
-</html>
+    if ($response && $response->success) {
+      setcookie($cfg_fh_username . '_captcha_key', $cfg_cookie_key, time() + (((60 * 60) * 24) * 1));
+    } else {
+      die('Failed to verify CAPTCHA.');
+    }
+  }
+}
+?><!DOCTYPE html><html lang="en"><head><title>Redirecting&hellip;</title><meta http-equiv="refresh" content="2;url=<?php echo $claim_url; ?>"/></head><body><main><p><a href="<?php echo $claim_url; ?>">Click here if you are not automatically redirected.</a></p></main></body></html>

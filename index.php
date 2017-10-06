@@ -6,23 +6,15 @@
   $referrer_currency = null; // The currency that the referrer wants to be paid in.
 
   if ($referred) {
-// TODO: verify $referrer and $referrer_currency are both set
     $referrer = htmlspecialchars(stripslashes($_GET['r']));
     $referrer_currency = htmlspecialchars(stripslashes($_GET['rc']));
   }
-
-  $captcha_done = ($_COOKIE[$cfg_fh_username . '_captcha_key'] == $cfg_cookie_key);
 ?>
 <html lang="en">
 <head>
  <title><?php echo $cfg_site_name; ?></title>
  <link rel="stylesheet" href="/main.css"/>
  <?php include 'head.i.php'; ?>
- <?php
-   if (!$captcha_done) {
-     echo '<script src="https://coinhive.com/lib/captcha.min.js" async></script>';
-   }
- ?>
 </head>
 <body>
 <header>
@@ -34,15 +26,10 @@
  <p>There&#700;s no timers or CAPTCHAs (apart from the one on this page); this is one of the leakiest faucets out there!</p>
  <p>(This faucet requires your address to be linked to a <a href="http://faucethub.io/r/10082526">FaucetHUB account</a>)</p>
  <p>(If the payout rates seem low, just remember that you get out just as much as you put in, and this faucet is much less &ldquo;labor-intensive&rdquo; than most.)</p>
- <aside><?php echo $cfg_MOTD; ?></aside>
+ <?php if ($cfg_set_mining) {echo '<p>This faucet <strong>does not</strong> freeze your account.</p>';} ?>
+ <aside id="motd"><?php echo $cfg_MOTD; ?></aside>
  <div style="padding-left: 1em">
-  <?php
-    if ($captcha_done) {
-      echo '<form action="claim.php" method="get">';
-    } else {
-      echo '<form action="verify.php" method="post">';
-    }
-  ?>
+  <form action="verify.php" method="post">
    <?php
      if ($referred) {
        echo '<input type="hidden" name="r" value="' . $referrer . '"/>';
@@ -50,10 +37,15 @@
      }
    ?>
    <?php
-     if ($captcha_done) {
-       echo '<p>(You are still verified, enjoy!)</p>';
-     } else {
-      echo '<div class="coinhive-captcha" data-disable-elements="#start_claiming" data-hashes="256" data-autostart="false" data-key="' . $cfg_coinhive_site . '"></div>';
+     if ($cfg_use_captcha) {
+       if (!captcha_done(false)) {
+         echo '<script src="https://coinhive.com/lib/captcha.min.js" async></script>';
+         echo '<div class="coinhive-captcha" data-hashes="' . (256 * $cfg_captcha_difficulty) . '" data-key="' . $cfg_coinhive_captcha_site . '" data-disable-elements="#start_claiming">';
+         echo '<em>Loading Captcha&hellip;<br/>If it doesn&#700;t load, please disable Adblock.</em>';
+         echo '</div>';
+       } else {
+         echo '<p>(You are still verified!)</p>';
+       }
      }
    ?>
    <input type="text" name="address" placeholder="address" size="40" style="font-family: monospace"/>
@@ -69,10 +61,8 @@
     <?php if ($cfg_XPM_enabled) {echo '<option value="XPM">XPM (~' . ($cfg_XPM_amount * 60) . '/minute)</option>';} ?>
    </select>
    <input id="start_claiming" type="submit" value="Start claiming"/>
-   <br/>
   </form>
  </div>
-
  <p>Referral link: <code><?php echo $cfg_site_url; ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code></p>
  <p><a href='https://a-ads.com?partner=660796'>Advertise with Anonymous Ads</a> (If they will pay <em>me</em>, they&#700;ll probably pay anyone!)</p>
 </main>
