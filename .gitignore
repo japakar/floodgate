@@ -4,3 +4,11 @@
 /head.i.php
 /iframetraffic.i.php
 /navbar.i.php
+
+# These files are just used by me, 0xc9. (The git repository is my actual site)
+/403.shtml
+/add.php
+/admin.php
+/ban.lib.php
+/claim.php
+/face.svg
