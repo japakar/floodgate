@@ -50,21 +50,23 @@
    ?>
    <input type="text" name="address" placeholder="address" size="40" style="font-family: monospace"/>
    <select name="currency">
-    <?php if ($cfg_BCH_enabled) {echo '<option value="BCH">BCH (~' . ($cfg_BCH_amount * 60) . '/minute)</option>';} ?>
-    <?php if ($cfg_BLK_enabled) {echo '<option value="BLK">BLK (~' . ($cfg_BLK_amount * 60) . '/minute)</option>';} ?>
-    <?php if ($cfg_BTC_enabled) {echo '<option value="BTC">BTC (~' . ($cfg_BTC_amount * 60) . '/minute)</option>';} ?>
-    <?php if ($cfg_DASH_enabled) {echo '<option value="DASH">DASH (~' . ($cfg_DASH_amount * 60) . '/minute)</option>';} ?>
-    <?php if ($cfg_DOGE_enabled) {echo '<option value="DOGE">DOGE (~' . ($cfg_DOGE_amount * 60) . '/minute)</option>';} ?>
-    <?php if ($cfg_ETH_enabled) {echo '<option value="ETH">ETH (~' . ($cfg_ETH_amount * 60) . '/minute)</option>';} ?>
-    <?php if ($cfg_LTC_enabled) {echo '<option value="LTC">LTC (~' . ($cfg_LTC_amount * 60) . '/minute)</option>';} ?>
-    <?php if ($cfg_PPC_enabled) {echo '<option value="PPC">PPC (~' . ($cfg_PPC_amount * 60) . '/minute)</option>';} ?>
-    <?php if ($cfg_XPM_enabled) {echo '<option value="XPM">XPM (~' . ($cfg_XPM_amount * 60) . '/minute)</option>';} ?>
+    <?php if ($cfg_BCH_enabled) {echo '<option value="BCH">BCH (' . ($cfg_BCH_amount) . ')</option>';} ?>
+    <?php if ($cfg_BLK_enabled) {echo '<option value="BLK">BLK (' . ($cfg_BLK_amount) . ')</option>';} ?>
+    <?php if ($cfg_BTC_enabled) {echo '<option value="BTC">BTC (' . ($cfg_BTC_amount) . ')</option>';} ?>
+    <?php if ($cfg_DASH_enabled) {echo '<option value="DASH">DASH (' . ($cfg_DASH_amount) . ')</option>';} ?>
+    <?php if ($cfg_DOGE_enabled) {echo '<option value="DOGE">DOGE (' . ($cfg_DOGE_amount) . ')</option>';} ?>
+    <?php if ($cfg_ETH_enabled) {echo '<option value="ETH">ETH (' . ($cfg_ETH_amount) . ')</option>';} ?>
+    <?php if ($cfg_LTC_enabled) {echo '<option value="LTC">LTC (' . ($cfg_LTC_amount) . ')</option>';} ?>
+    <?php if ($cfg_PPC_enabled) {echo '<option value="PPC">PPC (' . ($cfg_PPC_amount) . ')</option>';} ?>
+    <?php if ($cfg_XPM_enabled) {echo '<option value="XPM">XPM (' . ($cfg_XPM_amount) . ')</option>';} ?>
    </select>
    <input id="start_claiming" type="submit" value="Start claiming"/>
+   <br/>
+   <input type="checkbox" name="miner"/> Allow the site to mine on one thread with 80% idle time (more profits mean more payouts eventually!)
   </form>
  </div>
  <p>Referral link: <code><?php echo $cfg_site_url; ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code></p>
- <p><a href='https://a-ads.com?partner=660796'>Advertise with Anonymous Ads</a> (If they will pay <em>me</em>, they&#700;ll probably pay anyone!)</p>
+ <p><a href='https://a-ads.com?partner=<?php echo $cfg_aads_id; ?>'>Advertise with Anonymous Ads</a> (If they will pay <em>me</em>, they&#700;ll probably pay anyone!)</p>
 </main>
 <footer>
  <?php include 'ads_q.i.php'; ?>

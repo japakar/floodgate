@@ -295,7 +295,7 @@
             if ($referrer_hash == $user_hash) {
               $referrer_abuse = true;
             } else {
-              $faucethub_ref->sendReferralEarnings($referrer, ($amount * ((${'cfg_' . $referrer_currency . '_amount'} / 60) * $cfg_refresh_time)) / 2);
+              $faucethub_ref->sendReferralEarnings($referrer, intval(($amount * ${'cfg_' . $referrer_currency . '_amount'}) / 2));
               if (!$refer_file) {
                 if (!file_exists('referrers/' . $referrer_currency . '/' . $address)) {
                   $fp = fopen('referrers/' . $referrer_currency . '/' . $address, 'w');
@@ -309,7 +309,7 @@
           }
 
           if (!$referred || !$referrer_abuse) {
-            $result = $faucethub->send($address, intval($amount * (${'cfg_' . $currency . '_amount'} * $cfg_refresh_time)), false, $user_ip);
+            $result = $faucethub->send($address, intval($amount * ${'cfg_' . $currency . '_amount'}), false, $user_ip);
             $paid = true;
           }
         }
@@ -382,11 +382,14 @@
     } else if ($referrer_abuse) {
       echo '<p>You seem to have tried to cheat the system by double-claiming.</p>';
       echo '<p>This means that the referral address belongs to you.</p>';
+      echo '<p>You can get in <em>deep</em> trouble if you do this on a faucet that does not block it; Faucet&nbsp;Hub will automatically detect it and freeze your account and reverse every faucet claim you have made.</p>';
     } else {
       echo $errmsg;
     }
   }
 ?>
+<hr/>
+<p><strong>Do not bookmark this page!</strong> Use <a href="<?php echo $cfg_site_url; ?>"><?php echo $cfg_site_url; ?></a> instead. (I randomly change the URL of the &ldquo;claim&rdquo; page and ban anyone who visits the old URL after a certain amount of time.)</p>
 <hr/>
 <?php include 'iframetraffic.i.php'; ?>
 </main>

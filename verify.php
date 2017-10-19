@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
 
-$claim_url = $cfg_site_url . '/claim.php?';
+$claim_url = $cfg_site_url . '/newclaim.php?';
 
 if (isset($_POST['address'])) {
   $claim_url = $claim_url . '&address=' . htmlspecialchars(stripslashes($_POST['address']));
