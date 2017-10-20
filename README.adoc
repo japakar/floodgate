@@ -1,0 +1,50 @@
+= What everything does
+:toc:
+
+== Files
+
+[horizontal]
+'addresses/'::
+Stores the claim timestamp of every user address to discourage obvious cheaters.
+(I recommend cleaning this folder out once per day to save space.)
+'referrers/'::
+Saves the referrer of each address so that they still get paid if a user later visits without using the reflink.
+'users/'::
+Stores the claim timestamp of every unique user on Faucet&nbsp;Hub to prevent cheating.
+'441.php'::
+An error page explaining what is going on if the faucet is overloaded.
+(Too many claims in a short period of time, the faucet will stop paying out for a minute or so.)
++
+TIP: If this happens often, you can link:https://faucethub.io/ticket/fh[open a support ticket] and ask mexicantarget to increase the limit slightly.
+'newclaim.php'::
+The claim page, where the magic happens.
+'index.php'::
+The first page people see, serves as the entry point to the faucet.
+'main.css'::
+Customize the site style.
+'verify.php'::
+Checks if the CAPTCHA was solved.
+
+The following files are distributed as `.template.php`, and have to be renamed to `.php` after you set them up.
+This is to prevent you from successfully running a half-configured faucet.
+(Trust me, it is for the best.)
+
+[horizontal]
+'config.php'::
+*All the settings are in this file.*
+'ads.i.php'::
+Included at the bottom of the claim page, for ads to be shown a ton of times.
+'ads_q.i.php'::
+For &lsquo;quality&rsquo; ads &mdash; ads that shouldn&#700;t be shown on the automatic pages.
+'head.i.php'::
+Included in the &lt;head&gt; tag of every page, for anti-adblock and link:https://www.internetdefenseleague.org[IDL scripts], google analytics, etc.
+'iframetraffic.i.php'::
+Put sponsored sites here.
+'navbar.i.php'::
+Contents of the top navbar.
+
+'''
+
+There, now that you know what everything does, modify the script, add your ads to the pages, and release another beautiful complexity-free (for the users, anyway) faucet into the wild!
+
+*Make sure that the faucet is set up under the &ldquo;PTP&rdquo; and &ldquo;Mining&rdquo; categories on Faucet&nbsp;Hub&#700;s faucet manager page, or users could get their accounts frozen for claiming too often!*
