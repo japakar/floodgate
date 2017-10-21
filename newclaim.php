@@ -9,7 +9,7 @@
 
   // TODO: put the claim timestamps in /tmp/* instead of ./*
 
-  $amount = rand(5, 13) / 10;
+  $amount = rand(9, 11) / 10;
 
   header('X-From: sheshiresat with love');
   date_default_timezone_set('UTC');
