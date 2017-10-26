@@ -6,10 +6,11 @@
 /navbar.i.php
 
 # These files are just used by me, 0xc9. (The git repository is my actual site)
+/.htaccess
 /403.shtml
 /add.php
 /admin.php
 /ban.lib.php
+/blacklist.php
 /claim.php
 /face.svg
-/.htaccess

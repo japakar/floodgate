@@ -66,7 +66,7 @@
   </form>
  </div>
  <p>Referral link: <code><?php echo $cfg_site_url; ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code></p>
- <p><a href='https://a-ads.com?partner=<?php echo $cfg_aads_id; ?>'>Advertise with Anonymous Ads</a> (If they will pay <em>me</em>, they&#700;ll probably pay anyone!)</p>
+ <p><!-- Please don't change this referral! It is basically my one line of profit XD --><a href='https://a-ads.com?partner=710774'>Advertise with Anonymous&nbsp;Ads</a> (Best ad network ever!)</p>
 </main>
 <footer>
  <?php include 'ads_q.i.php'; ?>
