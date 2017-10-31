@@ -5,12 +5,11 @@
 /iframetraffic.i.php
 /navbar.i.php
 
-# These files are just used by me, 0xc9. (The git repository is my actual site)
+# These files are just used by me. (The git repository is my actual site)
 /.htaccess
-/403.shtml
+/403.html
 /add.php
-/admin.php
-/ban.lib.php
 /blacklist.php
 /claim.php
 /face.svg
+/interesting_addresses.txt

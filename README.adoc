@@ -43,8 +43,30 @@ Put sponsored sites here.
 'navbar.i.php'::
 Contents of the top navbar.
 
+These files make certain optional components work.
+
+[horizontal]
+'captcha.lib.php'::
+Abstraction over the CAPTCHA code.
+You can change the CAPTCHA by editing this file.
+'ban.lib.php'::
+Contains the functions for banning and un-banning people.
+Very much a work in progress; if you think of a better way to do these things, let me know!
+
+Miscellaneous files:
+
+[horizontal]
+'admin.php'::
+A honeypot page.
+Everyone who visits this page gets banned.
+(If `$cfg_enable_ban` is `true`.)
+
 '''
 
 There, now that you know what everything does, modify the script, add your ads to the pages, and release another beautiful complexity-free (for the users, anyway) faucet into the wild!
 
 *Make sure that the faucet is set up under the &ldquo;PTP&rdquo; and &ldquo;Mining&rdquo; categories on Faucet&nbsp;Hub&#700;s faucet manager page, or users could get their accounts frozen for claiming too often!*
+
+== How to un-ban IP addresses
+
+Open your '.htaccess' file and remove the line `deny from IP`, where *IP* is the IP address to un-ban.

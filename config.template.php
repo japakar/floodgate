@@ -36,24 +36,23 @@
   /* Your coinhive site key for voluntary mining with the "enable mining" checkbox */
   $cfg_coinhive_id = 'XXXREDACTEDXXXXXXXXXXpW3XVx9gRmy';
 
+  /* Set this to true and the faucet will automatically ban some botters and abusers by adding `deny from IP_ADDRESS` lines to /.htaccess */
+  /* Leave this disabled unless your server uses .htaccess files and you are fine with an automated script modifying it! */
+  $cfg_enable_ban = false;
+
+  function user_ip() {
+    return getenv('HTTP_CLIENT_IP')?:getenv('REMOTE_ADDR')?:false;
+  }
+
+  $cfg_cookie_key = 'DIE BOTS DIE'; // Set this to a secret string that only you know.
+
   $cfg_use_captcha = true; // Set this to false to disable the CAPTCHA
   if ($cfg_use_captcha) {
-    $cfg_captcha_difficulty = 1; // must be an integer greater than or equal to 1
     $cfg_coinhive_captcha_site = 'XXXREDACTEDXXXXXXXXXXpW3XVx9gRmy';
     $cfg_coinhive_captcha_secret = 'XXXREDACTEDXXXXXXXXXXjM4RJBARy3n';
-
-    $cfg_cookie_key = 'DIE BOTS DIE';
-    function captcha_done($ban_if_invalid) {
-      // $ban_if_invalid doesn't do anything yet
-      global $cfg_cookie_key;
-      global $cfg_fh_username;
-
-      $done = ($_COOKIE[$cfg_fh_username . '_captcha_key'] == $cfg_cookie_key);
-      return $done;
-    }
   }
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v2.12.1'; // The faucet name.
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.0.0'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet.
 ?>

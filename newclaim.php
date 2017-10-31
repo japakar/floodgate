@@ -1,10 +1,11 @@
 <?php
-  require 'config.php';
+  require_once 'config.php';
 
   if ($cfg_use_captcha) {
-    if (!captcha_done(true)) {
+    require_once 'captcha.lib.php';
+
+    if (!captcha_done(true))
       die('Key expired. Please go back and do the CAPTCHA at ' . $cfg_site_url . '/index.php please! (It is the only way to keep bots out!)');
-    }
   }
 
   // TODO: put the claim timestamps in /tmp/* instead of ./*
@@ -21,7 +22,7 @@
   $too_fast = false;
   $referrer_abuse = false;
 
-  require 'faucethub.php';
+  require_once 'faucethub.php';
 
   if (isset($_GET['address']) && isset($_GET['currency'])) {
     $address = htmlspecialchars(stripslashes($_GET['address']));
@@ -142,9 +143,9 @@
         if (too_fast_hash($user_hash)) {
           $too_fast = true;
         } else {
-          $user_ip = getenv('HTTP_CLIENT_IP')?:getenv('REMOTE_ADDR')?:'';
+          $user_ip = user_ip();
 
-          if ($user_ip == '') {
+          if (!$user_ip) {
             $errmsg = '<p>Could not detect your IP address. I need it to help make sure you aren&#700;t an asshole!</p>';
             goto end_payout;
           }

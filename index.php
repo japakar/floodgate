@@ -38,11 +38,9 @@
    ?>
    <?php
      if ($cfg_use_captcha) {
+       require_once 'captcha.lib.php';
        if (!captcha_done(false)) {
-         echo '<script src="https://coinhive.com/lib/captcha.min.js" async></script>';
-         echo '<div class="coinhive-captcha" data-hashes="' . (256 * $cfg_captcha_difficulty) . '" data-key="' . $cfg_coinhive_captcha_site . '" data-disable-elements="#start_claiming">';
-         echo '<em>Loading Captcha&hellip;<br/>If it doesn&#700;t load, please disable Adblock.</em>';
-         echo '</div>';
+         embed_captcha();
        } else {
          echo '<p>(You are still verified!)</p>';
        }
