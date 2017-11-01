@@ -1,18 +1,22 @@
 <?php
   require_once 'config.php';
 
-  if ($cfg_use_captcha) {
-    require_once 'captcha.lib.php';
-
-    if (!captcha_done(true))
-      die('Key expired. Please go back and do the CAPTCHA at ' . $cfg_site_url . '/index.php please! (It is the only way to keep bots out!)');
+  if ($cfg_enable_nastyhosts) {
+    /* Check with nastyhosts.com */
+    $nh_result = file_get_contents('http://v1.nastyhosts.com/' . user_ip());
+    $nh_result = json_decode($nh_result, true);
+    if($nh_result["suggestion"] == 'deny') {
+      header('Location: ' . $cfg_site_url . '/nastyhost.php', true, 302);
+      exit;
+    }
+    unset($nh_result);
+    /* I might be using too many different paradigms here... */
   }
 
   // TODO: put the claim timestamps in /tmp/* instead of ./*
 
   $amount = rand(9, 11) / 10;
 
-  header('X-From: sheshiresat with love');
   date_default_timezone_set('UTC');
 
   $dryrun = false;
@@ -27,6 +31,17 @@
   if (isset($_GET['address']) && isset($_GET['currency'])) {
     $address = htmlspecialchars(stripslashes($_GET['address']));
     $currency = htmlspecialchars(stripslashes($_GET['currency']));
+
+    if ($cfg_use_captcha) {
+      if (isset($_GET['key'])) {
+        if (htmlspecialchars(stripslashes($_GET['key'])) != md5($address . ' ' . $cfg_cookie_key)) {
+          require_once 'ban.lib.php';
+          ban_user('Invalid CAPTCHA key');
+          die('Congragulations, you are banned!');
+        }
+      } else
+        die('Missing CAPTCHA key.');
+    }
 
     if ((strlen($address) < 1) || (strlen($currency) < 1)) {
       $errmsg = '<p>One of the parameters is empty.</p>';

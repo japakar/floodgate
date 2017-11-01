@@ -1,7 +1,7 @@
 <?php
 require_once 'config.php';
 
-$claim_url = $cfg_site_url . '/newclaim.php?';
+$claim_url = $cfg_site_url . '/faucet.php?';
 
 if (isset($_POST['address'])) {
   $claim_url = $claim_url . '&address=' . htmlspecialchars(stripslashes($_POST['address']));
@@ -22,11 +22,9 @@ if (isset($_POST['miner'])) {
 if ($cfg_use_captcha) {
   require_once 'captcha.lib.php';
 
-  if (!captcha_done(false)) {
-    if (verify_captcha())
-      setcookie($cfg_fh_username . '_captcha_key', md5(user_ip() . ' ' . $cfg_cookie_key), time() + (((60 * 60) * 24) * 1));
-    else
-      die('Failed to verify CAPTCHA.');
-  }
+  if (verify_captcha())
+    $claim_url = $claim_url . '&key=' . urlencode(md5(htmlspecialchars(stripslashes($_POST['address'])) . ' ' . $cfg_cookie_key));
+  else
+    die('Failed to verify CAPTCHA.');
 }
 ?><!DOCTYPE html><html lang="en"><head><title>Redirecting&hellip;</title><meta http-equiv="refresh" content="2;url=<?php echo $claim_url; ?>"/></head><body><main><p><a href="<?php echo $claim_url; ?>">Click here if you are not automatically redirected.</a></p></main></body></html>

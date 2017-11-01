@@ -39,11 +39,7 @@
    <?php
      if ($cfg_use_captcha) {
        require_once 'captcha.lib.php';
-       if (!captcha_done(false)) {
-         embed_captcha();
-       } else {
-         echo '<p>(You are still verified!)</p>';
-       }
+       embed_captcha();
      }
    ?>
    <input type="text" name="address" placeholder="address" size="40" style="font-family: monospace"/>

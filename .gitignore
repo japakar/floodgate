@@ -8,8 +8,7 @@
 # These files are just used by me. (The git repository is my actual site)
 /.htaccess
 /403.html
-/add.php
 /blacklist.php
-/claim.php
 /face.svg
 /interesting_addresses.txt
+/tx

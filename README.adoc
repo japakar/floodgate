@@ -22,6 +22,10 @@ The claim page, where the magic happens.
 The first page people see, serves as the entry point to the faucet.
 'main.css'::
 Customize the site style.
+'nastyhost.php'::
+An informational age explaining why a user is blocked if they get a positive on link:http://nastyhosts.com[NastyHosts].
+It is entirely possible that it is a false positive, so people don&#700;t get banned automatically simply for having a blacklisted address.
+(They can&#700;t claim unless you whitelist them though.)
 'verify.php'::
 Checks if the CAPTCHA was solved.
 

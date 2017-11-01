@@ -34,19 +34,4 @@ function verify_captcha() {
 
   return ($response && $response->success);
 }
-
-/* Returns true if the user is already verified, or false. */
-function captcha_done($ban_if_invalid) {
-  global $cfg_cookie_key;
-  global $cfg_fh_username;
-
-  if (isset($_COOKIE[$cfg_fh_username . '_captcha_key'])) {
-    $done = ($_COOKIE[$cfg_fh_username . '_captcha_key'] == md5(user_ip() . ' ' . $cfg_cookie_key));
-    if (!$done && $ban_if_invalid) {
-      // TODO: BAN!
-    }
-    return $done;
-  } else
-    return false;
-}
 ?>
