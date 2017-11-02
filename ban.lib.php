@@ -8,6 +8,8 @@ function ban_user($reason) {
     $ip = user_ip();
     if (!$ip) die('Error detecting IP.');
 
+    $tmp = ignore_user_abort(true); // no idea if necessary, better safe than sorry
+
     if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/.htaccess'))
       $fp = fopen($_SERVER['DOCUMENT_ROOT'] . '/.htaccess', 'w') or die('Error.');
     else
@@ -16,6 +18,8 @@ function ban_user($reason) {
     fwrite($fp, "\n#BAN: " . $reason . "\n");
     fwrite($fp, 'deny from ' . $ip . "\n");
     fclose($fp);
+
+    ignore_user_abort($tmp);
   }
 }
 
