@@ -47,14 +47,22 @@
   $cfg_cookie_key = 'DIE BOTS DIE'; // Set this to a secret string that only you know.
 
   $cfg_use_captcha = true; // Set this to false to disable the CAPTCHA
+  $cfg_use_shortlink = false; // You can use a shortlink instead of a CAPTCHA
+
+  /* The default CAPTCHA is coinhive, and the default shortlink is eliwin;
+   * you can change them, but you've got to rewrite captcha.lib.php or shortlink.lib.php yourself. */
+
   if ($cfg_use_captcha) {
     $cfg_coinhive_captcha_site = 'XXXREDACTEDXXXXXXXXXXpW3XVx9gRmy';
     $cfg_coinhive_captcha_secret = 'XXXREDACTEDXXXXXXXXXXjM4RJBARy3n';
+  } else if ($cfg_use_shortlink) {
+    // eliwin is ref-only: https://elibtc.win/ref/sheshiresat
+    $cfg_eliwin_key = 'XXXREDACTEDXXXXXXXXXXXXXXXXXX7bd1a9161f1';
   }
 
   $cfg_enable_nastyhosts = true; // Whether to check with nastyhosts on the claim page.
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.1.2'; // The faucet name.
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.2.0'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet.
 ?>

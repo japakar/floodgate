@@ -56,6 +56,9 @@ You can change the CAPTCHA by editing this file.
 'ban.lib.php'::
 Contains the functions for banning and un-banning people.
 Very much a work in progress; if you think of a better way to do these things, let me know!
+'shortlink.lib.php'::
+Routines for using a shortlink instead of a CAPTCHA.
+You can change the shortlink by editing this file.
 
 Miscellaneous files:
 

@@ -32,15 +32,15 @@
     $address = htmlspecialchars(stripslashes($_GET['address']));
     $currency = htmlspecialchars(stripslashes($_GET['currency']));
 
-    if ($cfg_use_captcha) {
+    if ($cfg_use_captcha || $cfg_use_shortlink) {
       if (isset($_GET['key'])) {
         if (htmlspecialchars(stripslashes($_GET['key'])) != md5($address . ' ' . $cfg_cookie_key)) {
           require_once 'ban.lib.php';
-          ban_user('Invalid CAPTCHA key');
+          ban_user('Invalid key. Please go back to the main page and try again.');
           die('Congragulations, you are banned!');
         }
       } else
-        die('Missing CAPTCHA key.');
+        die('Missing key.');
     }
 
     if ((strlen($address) < 1) || (strlen($currency) < 1)) {
