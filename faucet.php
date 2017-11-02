@@ -36,7 +36,7 @@
       if (isset($_GET['key'])) {
         if (htmlspecialchars(stripslashes($_GET['key'])) != md5($address . ' ' . $cfg_cookie_key)) {
           require_once 'ban.lib.php';
-          ban_user('Invalid key. Please go back to the main page and try again.');
+          ban_user('Invalid key');
           die('Congragulations, you are banned!');
         }
       } else
