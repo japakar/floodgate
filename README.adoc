@@ -16,7 +16,7 @@ An error page explaining what is going on if the faucet is overloaded.
 (If you receive too many claims in a short period of time, the faucet will stop paying out for a minute or so.)
 +
 TIP: If this happens often, you can link:https://faucethub.io/ticket/fh[open a support ticket] and ask mexicantarget to increase the limit slightly.
-'newclaim.php'::
+'faucet.php'::
 The claim page, where the magic happens.
 'index.php'::
 The first page people see, serves as the entry point to the faucet.
