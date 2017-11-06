@@ -2,15 +2,17 @@
   require_once 'config.php';
 
   if ($cfg_enable_nastyhosts) {
-    /* Check with nastyhosts.com */
-    $nh_result = file_get_contents('http://v1.nastyhosts.com/' . user_ip());
-    $nh_result = json_decode($nh_result, true);
-    if($nh_result["suggestion"] == 'deny') {
-      header('Location: ' . $cfg_site_url . '/nastyhost.php', true, 302);
-      exit;
+    if (!isset($cfg_nastyhost_whitelist[user_ip()])) {
+      /* Check with nastyhosts.com */
+      $nh_result = file_get_contents('http://v1.nastyhosts.com/' . user_ip());
+      $nh_result = json_decode($nh_result, true);
+      if($nh_result["suggestion"] == 'deny') {
+        header('Location: ' . $cfg_site_url . '/nastyhost.php', true, 302);
+        exit;
+      }
+      unset($nh_result);
+      /* I might be using too many different paradigms here... */
     }
-    unset($nh_result);
-    /* I might be using too many different paradigms here... */
   }
 
   // TODO: put the claim timestamps in /tmp/* instead of ./*
@@ -344,7 +346,13 @@
 <?php
   if ($paid) {
     if ($result['success'] === true) {
-      echo '<script type="text/javascript">setTimeout("location.reload(true);",' . ($cfg_real_refresh_time * 1000) . ');</script>';
+      echo '<script type="text/javascript">setTimeout("';
+      if ($cfg_enable_google_analytics) {
+        echo 'window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo 'gtag(\'event\', \'complete_claim\');';
+      }
+      echo 'location.reload(true);';
+      echo '",' . ($cfg_real_refresh_time * 1000) . ');</script>';
     } else {
       if (json_decode($result['response'], true)['status'] == 441) {
         $overload = true;
@@ -370,12 +378,27 @@
     echo $result['html'];
 
     if ($result['success'] === true) {
+      if ($cfg_enable_google_analytics) {
+        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo 'gtag(\'event\', \'claim\', {';
+        echo '\'currency\': \'' . $currency . '\',';
+        echo '\'referred\': ' . $referred . ',';
+        echo '});';
+        echo '</script>';
+      }
       echo '<p>Just leave this page open, and it should automatically refresh and send you more ' . $currency . ' every ' . ($cfg_refresh_time / 60) . ' minutes!</p>';
       echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . $address . '&amp;rc=' . $currency . '</code></p>';
       if ($referred) {
         echo '<p>(Some ' . $referrer_currency . ' was sent to ' . $referrer . ' as well.)</p>';
       }
     } else if (json_decode($result['response'], true)['status'] == 402) {
+      if ($cfg_enable_google_analytics) {
+        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo 'gtag(\'event\', \'faucet_dry\', {';
+        echo '\'currency\': \'' . $currency . '\',';
+        echo '});';
+        echo '</script>';
+      }
       echo '<p>The faucet is out of this particular currency. Want to try another one?</p>';
       echo '<p>(A few currencies depend on the exchange, the faucet will usually be re-filled once ' . $cfg_fh_username . '&#700;s &lsquo;buy&rsquo; orders are filled.) (If you are <em>really</em> impatient, perhaps someone will /tip ' . $cfg_fh_username . ' some ' . $currency . '?)</p>';
       echo '<p>(I would put a little &ldquo;faucet balance&rdquo; widget on the main page, but that would currently result in a <em>TON</em> of API requests&hellip;)</p>';
@@ -388,18 +411,42 @@
     }
   } else {
     if ($dryrun) {
+      if ($cfg_enable_google_analytics) {
+        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo 'gtag(\'event\', \'dry_run\');';
+        echo '</script>';
+      }
       echo '<p>No claim detected, here is what the page looks like.</p>';
     } else if ($too_fast) {
+      if ($cfg_enable_google_analytics) {
+        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo 'gtag(\'event\', \'too_fast\', {';
+        echo '\'currency\': \'' . $currency . '\',';
+        echo '});';
+        echo '</script>';
+      }
       echo '<p>Just leave this page open, and it should automatically send you more ' . $currency . ' every ' . ($cfg_refresh_time / 60) . ' minutes!</p>';
       echo '<p>Time until next payout: ' . (($prev_time + $cfg_refresh_time) - $current_time) . ' seconds.</p>';
       echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . $address . '&amp;rc=' . $currency . '</code></p>';
       echo '<hr/><p>Timestamp of last claim: <time>' . $prev_time . '</time></p>';
       echo '<hr/><p>Timestamp of last refresh: <time>' . $current_time . '</time></p>';
     } else if ($referrer_abuse) {
+      if ($cfg_enable_google_analytics) {
+        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo 'gtag(\'event\', \'double_claim\');';
+        echo '</script>';
+      }
       echo '<p>You seem to have tried to cheat the system by double-claiming.</p>';
       echo '<p>This means that the referral address belongs to you.</p>';
       echo '<p>You can get in <em>deep</em> trouble if you do this on a faucet that does not block it; Faucet&nbsp;Hub will automatically detect it and freeze your account and reverse every faucet claim you have made.</p>';
     } else {
+      if ($cfg_enable_google_analytics) {
+        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo 'gtag(\'event\', \'error\', {';
+        echo '\'message\': \'' . urlencode($errmsg) . '\',';
+        echo '});';
+        echo '</script>';
+      }
       echo $errmsg;
     }
   }

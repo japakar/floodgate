@@ -61,8 +61,19 @@
   }
 
   $cfg_enable_nastyhosts = true; // Whether to check with nastyhosts on the claim page.
+  if ($cfg_enable_nastyhosts) {
+    $cfg_nastyhost_whitelist = [
+      '8.8.8.8' => 'Generic IP address',
+      '127.0.0.1' => 'someone',
+    ];
+  }
+
+  /* Google Analytics options. */
+  $cfg_enable_google_analytics = false;
+  if ($cfg_enable_google_analytics) {
+    $cfg_ga_ID = 'UA-XXXXXXXXX-X'; // your tracking ID
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.3.0'; // The faucet name.
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.4.0'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet.
 ?>
