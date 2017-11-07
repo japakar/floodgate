@@ -23,7 +23,7 @@
 <main>
  <h1><?php echo $cfg_site_name; ?></h1>
  <p>Just enter your address below, select your currency, hit submit, and then leave the page open for tons of satoshi!</p>
- <p>There&#700;s no timers or CAPTCHAs (apart from the one on this page); this is one of the leakiest faucets out there!</p>
+ <p>There&#700;s no timers or CAPTCHAs<?php if ($cfg_use_captcha) echo ' (apart from the one on this page)'; ?>; this is one of the leakiest faucets out there!</p>
  <p>(This faucet requires your address to be linked to a <a href="http://faucethub.io/r/10082526">FaucetHUB account</a>)</p>
  <p>(If the payout rates seem low, just remember that you get out just as much as you put in, and this faucet is much less &ldquo;labor-intensive&rdquo; than most.)</p>
  <?php if ($cfg_set_mining) {echo '<p>This faucet <strong>does not</strong> freeze your account.</p>';} ?>
