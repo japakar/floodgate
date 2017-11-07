@@ -59,7 +59,7 @@
    <input type="checkbox" name="miner"/> Allow the site to mine on one thread with 80% idle time (more profits mean more payouts eventually!)
   </form>
  </div>
- <p>Referral link: <code><?php echo $cfg_site_url; ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code></p>
+ <p>Referral link: <code><?php echo $cfg_site_url; ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>
  <p><!-- Please don't change this referral! It is basically my one line of profit XD --><a href='https://a-ads.com?partner=710774'>Advertise with Anonymous&nbsp;Ads</a> (Best ad network ever!)</p>
 </main>
 <footer>

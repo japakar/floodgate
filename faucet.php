@@ -387,7 +387,7 @@
         echo '</script>';
       }
       echo '<p>Just leave this page open, and it should automatically refresh and send you more ' . $currency . ' every ' . ($cfg_refresh_time / 60) . ' minutes!</p>';
-      echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . $address . '&amp;rc=' . $currency . '</code></p>';
+      echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . $address . '&amp;rc=' . $currency . '</code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>';
       if ($referred) {
         echo '<p>(Some ' . $referrer_currency . ' was sent to ' . $referrer . ' as well.)</p>';
       }
@@ -427,7 +427,7 @@
       }
       echo '<p>Just leave this page open, and it should automatically send you more ' . $currency . ' every ' . ($cfg_refresh_time / 60) . ' minutes!</p>';
       echo '<p>Time until next payout: ' . (($prev_time + $cfg_refresh_time) - $current_time) . ' seconds.</p>';
-      echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . $address . '&amp;rc=' . $currency . '</code></p>';
+      echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . $address . '&amp;rc=' . $currency . '</code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>';
       echo '<hr/><p>Timestamp of last claim: <time>' . $prev_time . '</time></p>';
       echo '<hr/><p>Timestamp of last refresh: <time>' . $current_time . '</time></p>';
     } else if ($referrer_abuse) {
