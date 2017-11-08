@@ -169,7 +169,7 @@
             goto end_payout;
           }
 
-          $referred = (isset($_GET['r']) ? true : false);
+          $referred = !!isset($_GET['r']);
 
           if (!$referred) {
             if ($cfg_BCH_enabled) {
@@ -280,27 +280,21 @@
               goto end_payout;
             }
 
-            if ($referrer_currency == 'BCH') {
-              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'BCH');
-            } else if ($referrer_currency == 'BLK') {
-              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'BLK');
-            } else if ($referrer_currency == 'BTC') {
-              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'BTC');
-            } else if ($referrer_currency == 'DASH') {
-              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'DASH');
-            } else if ($referrer_currency == 'DOGE') {
-              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'DOGE');
-            } else if ($referrer_currency == 'ETH') {
-              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'ETH');
-            } else if ($referrer_currency == 'LTC') {
-              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'LTC');
-            } else if ($referrer_currency == 'PPC') {
-              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'PPC');
-            } else if ($referrer_currency == 'XPM') {
-              $faucethub_ref = new FaucetHub($cfg_fh_api_key, 'XPM');
-            } else {
-              $errmsg = '<p>Invalid referrer currency.</p>';
-              goto end_payout;
+            switch ($referrer_currency) {
+              case 'BCH':
+              case 'BLK':
+              case 'BTC':
+              case 'DASH':
+              case 'DOGE':
+              case 'ETH':
+              case 'LTC':
+              case 'PPC':
+              case 'XPM':
+                $faucethub_ref = new FaucetHub($cfg_fh_api_key, $referrer_currency);
+                break;
+              default:
+                $errmsg = '<p>Invalid referrer currency.</p>';
+                goto end_payout;
             }
 
             $a = $faucethub_ref->checkAddress($referrer, $referrer_currency);
@@ -308,7 +302,8 @@
               $referrer_hash = $a['payout_user_hash'];
             } else {
               $errmsg = '<p>Error connecting to FaucetHUB to check referral!</p><dl><dt>Status</dt><dd>' . $a['status'] . '</dd><dt>Message</dt><dd>' . $a['message'] . '</dd></dl>';
-              if ($a['status'] == 441) $overload = true;
+              if ($a['status'] == 441)
+                $overload = true;
               goto end_payout;
             }
 
@@ -345,6 +340,8 @@
 <html lang="en">
 <head>
 <title><?php echo $cfg_site_name; ?></title>
+<link rel="stylesheet" href="/main.css"/>
+<?php include 'head.i.php'; ?>
 <?php
   if ($paid) {
     if ($result['success'] === true) {
@@ -368,8 +365,6 @@
     echo '<script type="text/javascript">setTimeout("location.reload(true);",' . ($cfg_real_refresh_time * 1000) . ');</script>';
   }
 ?>
-<link rel="stylesheet" href="/main.css"/>
-<?php include 'head.i.php'; ?>
 </head>
 <body>
 <header><?php include 'navbar.i.php'; ?></header>
@@ -390,9 +385,8 @@
       }
       echo '<p>Just leave this page open, and it should automatically refresh and send you more ' . $currency . ' every ' . ($cfg_refresh_time / 60) . ' minutes!</p>';
       echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . $address . '&amp;rc=' . $currency . '</code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>';
-      if ($referred) {
+      if ($referred)
         echo '<p>(Some ' . $referrer_currency . ' was sent to ' . $referrer . ' as well.)</p>';
-      }
     } else if (json_decode($result['response'], true)['status'] == 402) {
       if ($cfg_enable_google_analytics) {
         echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
@@ -405,6 +399,13 @@
       echo '<p>(A few currencies depend on the exchange, the faucet will usually be re-filled once ' . $cfg_fh_username . '&#700;s &lsquo;buy&rsquo; orders are filled.) (If you are <em>really</em> impatient, perhaps someone will /tip ' . $cfg_fh_username . ' some ' . $currency . '?)</p>';
       echo '<p>(I would put a little &ldquo;faucet balance&rdquo; widget on the main page, but that would currently result in a <em>TON</em> of API requests&hellip;)</p>';
     } else {
+      if ($cfg_enable_google_analytics) {
+        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo 'gtag(\'event\', \'fh_error\', {';
+        echo '\'status\': \'' . $result['status'] . '\',';
+        echo '});';
+        echo '</script>';
+      }
       echo '<p>Please contact ' . $cfg_fh_username . ' on FaucetHUB and let them know; they can&#700;t see the errors due to the huge volume of claims!</p>';
       echo '<dl><dt>Status</dt><dd>' . $result['status'] . '</dd><dt>Message</dt><dd>' . $result['message'] . '</dd></dl>';
       echo '<hr/>';
@@ -444,9 +445,7 @@
     } else {
       if ($cfg_enable_google_analytics) {
         echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
-        echo 'gtag(\'event\', \'error\', {';
-        echo '\'message\': \'' . urlencode($errmsg) . '\',';
-        echo '});';
+        echo 'gtag(\'event\', \'error\');';
         echo '</script>';
       }
       echo $errmsg;
@@ -454,12 +453,10 @@
   }
 ?>
 <hr/>
-<p><strong>Do not bookmark this page!</strong> Use <a href="<?php echo $cfg_site_url; ?>"><?php echo $cfg_site_url; ?></a> instead. (I randomly change the URL of the &ldquo;claim&rdquo; page and ban anyone who visits the old URL after a certain amount of time.)</p>
+<p><strong>Do not bookmark this page!</strong> Use <a href="<?php echo $cfg_site_url; ?>"><?php echo $cfg_site_url; ?></a> instead. (If the claim URL changes and you visit this page directly, you might be mistaken for a bot and banned.)</p>
 <hr/>
 <?php include 'iframetraffic.i.php'; ?>
 </main>
-<footer>
-<?php include 'ads.i.php'; ?>
-</footer>
+<footer><?php include 'ads.i.php'; ?></footer>
 </body>
 </html>
