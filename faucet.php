@@ -19,6 +19,8 @@
 
   $amount = rand(9, 11) / 10;
 
+  include 'claim_options_process.i.php';
+
   date_default_timezone_set('UTC');
 
   $dryrun = false;

@@ -3,21 +3,18 @@ require_once 'config.php';
 
 $claim_url = $cfg_site_url . '/faucet.php?';
 
-if (isset($_POST['address'])) {
-  $claim_url = $claim_url . '&address=' . htmlspecialchars(stripslashes($_POST['address']));
+$first = true;
+foreach ($_POST as $key => $value) {
+  if ($first) {
+    $claim_url = $claim_url . $key . '=' . urlencode(htmlspecialchars(stripslashes($value)));
+    $first = false;
+  } else {
+    $claim_url = $claim_url . '&' . $key . '=' . urlencode(htmlspecialchars(stripslashes($value)));
+  }
 }
-if (isset($_POST['currency'])) {
-  $claim_url = $claim_url . '&currency=' . htmlspecialchars(stripslashes($_POST['currency']));
-}
-if (isset($_POST['r'])) {
-  $claim_url = $claim_url . '&r=' . htmlspecialchars(stripslashes($_POST['r']));
-}
-if (isset($_POST['rc'])) {
-  $claim_url = $claim_url . '&rc=' . htmlspecialchars(stripslashes($_POST['rc']));
-}
-if (isset($_POST['miner'])) {
-  $claim_url = $claim_url . '&miner=' . htmlspecialchars(stripslashes($_POST['miner']));
-}
+unset($key);
+unset($value);
+unset($first);
 
 if ($cfg_use_captcha) {
   require_once 'captcha.lib.php';

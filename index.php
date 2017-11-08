@@ -55,8 +55,7 @@
     <?php if ($cfg_XPM_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'XPM')) {echo 'selected="selected" ';} echo 'value="XPM">XPM (' . ($cfg_XPM_amount) . ')</option>';} ?>
    </select>
    <input id="start_claiming" type="submit" value="Start claiming"/>
-   <br/>
-   <input type="checkbox" name="miner"/> Allow the site to mine on one thread with 80% idle time (more profits mean more payouts eventually!)
+   <?php include 'claim_options.i.php'; ?>
   </form>
  </div>
  <p>Referral link: <code><?php echo $cfg_site_url; ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>

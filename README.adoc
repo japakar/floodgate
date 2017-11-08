@@ -46,6 +46,12 @@ Included in the &lt;head&gt; tag of every page, for anti-adblock and link:https:
 Put sponsored sites here.
 'navbar.i.php'::
 Contents of the top navbar.
+'claim_options.i.php'::
+Extra form elements to add to the entry form on 'index.php'.
+(Can be left empty.)
+'claim_options_process.i.php'::
+For options that affect payout amounts. Included by 'faucet.php'.
+(Can also be left empty.)
 
 These files make certain optional components work.
 

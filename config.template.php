@@ -80,6 +80,6 @@
   }
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.4.1'; // The faucet name.
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.5.0-dev'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet.
 ?>
