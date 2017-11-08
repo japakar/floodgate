@@ -72,8 +72,14 @@
   $cfg_enable_google_analytics = false;
   if ($cfg_enable_google_analytics) {
     $cfg_ga_ID = 'UA-XXXXXXXXX-X'; // your tracking ID
+    /* Be sure to go to
+     *  [Admin > All Web Site Data > View Settings]
+     * and set "Exclude URL Query Parameters" to:
+     *   r,rc,address,currency,key
+    */
+  }
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.4.0'; // The faucet name.
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.4.1'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet.
 ?>
