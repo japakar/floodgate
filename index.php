@@ -44,15 +44,15 @@
    ?>
    <input type="text" name="address" placeholder="address" size="40" style="font-family: monospace"/>
    <select name="currency">
-    <?php if ($cfg_BCH_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'BCH')) {echo 'selected="selected" ';} echo 'value="BCH">BCH (' . ($cfg_BCH_amount) . ')</option>';} ?>
-    <?php if ($cfg_BLK_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'BLK')) {echo 'selected="selected" ';} echo 'value="BLK">BLK (' . ($cfg_BLK_amount) . ')</option>';} ?>
-    <?php if ($cfg_BTC_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'BTC')) {echo 'selected="selected" ';} echo 'value="BTC">BTC (' . ($cfg_BTC_amount) . ')</option>';} ?>
-    <?php if ($cfg_DASH_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'DASH')) {echo 'selected="selected" ';} echo 'value="DASH">DASH (' . ($cfg_DASH_amount) . ')</option>';} ?>
-    <?php if ($cfg_DOGE_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'DOGE')) {echo 'selected="selected" ';} echo 'value="DOGE">DOGE (' . ($cfg_DOGE_amount) . ')</option>';} ?>
-    <?php if ($cfg_ETH_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'ETH')) {echo 'selected="selected" ';} echo 'value="ETH">ETH (' . ($cfg_ETH_amount) . ')</option>';} ?>
-    <?php if ($cfg_LTC_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'LTC')) {echo 'selected="selected" ';} echo 'value="LTC">LTC (' . ($cfg_LTC_amount) . ')</option>';} ?>
-    <?php if ($cfg_PPC_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'PPC')) {echo 'selected="selected" ';} echo 'value="PPC">PPC (' . ($cfg_PPC_amount) . ')</option>';} ?>
-    <?php if ($cfg_XPM_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'XPM')) {echo 'selected="selected" ';} echo 'value="XPM">XPM (' . ($cfg_XPM_amount) . ')</option>';} ?>
+    <?php if ($cfg_BCH_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'BCH')) {echo 'selected="selected" ';} echo 'value="BCH">BCH (~' . ($cfg_BCH_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_BLK_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'BLK')) {echo 'selected="selected" ';} echo 'value="BLK">BLK (~' . ($cfg_BLK_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_BTC_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'BTC')) {echo 'selected="selected" ';} echo 'value="BTC">BTC (~' . ($cfg_BTC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_DASH_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'DASH')) {echo 'selected="selected" ';} echo 'value="DASH">DASH (~' . ($cfg_DASH_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_DOGE_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'DOGE')) {echo 'selected="selected" ';} echo 'value="DOGE">DOGE (~' . ($cfg_DOGE_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_ETH_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'ETH')) {echo 'selected="selected" ';} echo 'value="ETH">ETH (~' . ($cfg_ETH_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_LTC_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'LTC')) {echo 'selected="selected" ';} echo 'value="LTC">LTC (~' . ($cfg_LTC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_PPC_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'PPC')) {echo 'selected="selected" ';} echo 'value="PPC">PPC (~' . ($cfg_PPC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_XPM_enabled) {echo '<option '; if ($referred && ($referrer_currency == 'XPM')) {echo 'selected="selected" ';} echo 'value="XPM">XPM (~' . ($cfg_XPM_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
    </select>
    <input id="start_claiming" type="submit" value="Start claiming"/>
    <?php include 'claim_options.i.php'; ?>
