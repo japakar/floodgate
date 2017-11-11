@@ -13,6 +13,7 @@
   $cfg_BCH_enabled  = false;
   $cfg_BLK_enabled  = true;
   $cfg_BTC_enabled  = false;
+  $cfg_BTX_enabled  = false;
   $cfg_DASH_enabled = false;
   $cfg_DOGE_enabled = true;
   $cfg_ETH_enabled  = false;
@@ -23,6 +24,7 @@
   $cfg_BCH_amount  = null;
   $cfg_BLK_amount  = intval((200 / 60) * $cfg_refresh_time);
   $cfg_BTC_amount  = null;
+  $cfg_BTX_amount  = null;
   $cfg_DASH_amount = null;
   $cfg_DOGE_amount = intval((10050 / 60) * $cfg_refresh_time);
   $cfg_ETH_amount  = null;
@@ -80,6 +82,6 @@
   }
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.5.0-dev'; // The faucet name.
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.5.0'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet.
 ?>

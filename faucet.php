@@ -65,6 +65,10 @@
         if (!$cfg_BTC_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
         $faucethub = new FaucetHub($cfg_fh_api_key, 'BTC');
         break;
+      case 'BTX':
+        if (!$cfg_BTX_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
+        $faucethub = new FaucetHub($cfg_fh_api_key, 'BTX');
+        break;
       case 'DASH':
         if (!$cfg_DASH_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
         $faucethub = new FaucetHub($cfg_fh_api_key, 'DASH');
@@ -202,6 +206,16 @@
                 fclose($fp);
               }
             }
+            if ($cfg_BTX_enabled) {
+              if (file_exists('referrers/BTX/' . $address)) {
+                $fp = fopen('referrers/BTX/' . $address, 'r') or die('I/O Error.');
+                $referred = true;
+                $refer_file = true;
+                $referrer_currency = 'BTX';
+                $referrer = fread($fp, filesize('referrers/BTX/' . $address));
+                fclose($fp);
+              }
+            }
             if ($cfg_DASH_enabled) {
               if (file_exists('referrers/DASH/' . $address)) {
                 $fp = fopen('referrers/DASH/' . $address, 'r') or die('I/O Error.');
@@ -284,6 +298,7 @@
               case 'BCH':
               case 'BLK':
               case 'BTC':
+              case 'BTX':
               case 'DASH':
               case 'DOGE':
               case 'ETH':
