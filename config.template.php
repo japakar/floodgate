@@ -86,6 +86,18 @@
     ];
   }
 
+  $cfg_enable_iphub = false; // If you want to use IPHub instead (might as well disable NastyHosts first) (you _can_ use both, if you hate everyone)
+  if ($cfg_enable_iphub) {
+    $cfg_iphub_key = 'XXXREDACTEDXXXXXXXXXXXXXXXXXXXXXSnB4TDd0c1hTbXpI';
+    $cfg_iphub_block_level = 1; // https://iphub.info/api
+
+    $cfg_iphub_whitelist = [ // IP addresses that you don't want to check
+      'IP address' => 'description (can be anything you want)',
+      '8.8.8.8' => 'Generic IP address',
+      '127.0.0.1' => 'someone',
+    ];
+  }
+
   /* Google Analytics options. */
   $cfg_enable_google_analytics = false;
   if ($cfg_enable_google_analytics) {

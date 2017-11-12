@@ -9,6 +9,14 @@
     }
   }
 
+  if ($cfg_enable_iphub) {
+    require_once 'iphub.lib.php';
+    if (check_iphub(user_ip())) {
+      header('Location: ' . $cfg_site_url . '/iphub_block.php', true, 302);
+      exit;
+    }
+  }
+
   // TODO: put the claim timestamps in /tmp/* instead of ./*
 
   $amount = rand(9, 11) / 10;

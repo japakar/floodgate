@@ -20,6 +20,8 @@ TIP: If this happens often, you can link:https://faucethub.io/ticket/fh[open a s
 The claim page, where the magic happens.
 'index.php'::
 The first page people see, serves as the entry point to the faucet.
+'iphub_block.php'::
+An informational page explaining why a user was blocked by IPHub.
 'main.css'::
 Customize the site style.
 'nastyhost.php'::
@@ -62,6 +64,8 @@ You can change the CAPTCHA by editing this file.
 'ban.lib.php'::
 Contains the functions for banning and un-banning people.
 Very much a work in progress; if you think of a better way to do these things, let me know!
+'iphub.lib.php'::
+Contains the code for using the IPHub API.
 'nastyhosts.lib.php'::
 Contains the code for using the NastyHosts API.
 'shortlink.lib.php'::
