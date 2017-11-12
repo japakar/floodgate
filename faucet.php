@@ -55,43 +55,43 @@
     switch ($currency) {
       case 'BCH':
         if (!$cfg_BCH_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'BCH');
+        $faucethub = new FaucetHub($cfg_BCH_api_key, 'BCH');
         break;
       case 'BLK':
         if (!$cfg_BLK_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'BLK');
+        $faucethub = new FaucetHub($cfg_BLK_api_key, 'BLK');
         break;
       case 'BTC':
         if (!$cfg_BTC_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'BTC');
+        $faucethub = new FaucetHub($cfg_BTC_api_key, 'BTC');
         break;
       case 'BTX':
         if (!$cfg_BTX_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'BTX');
+        $faucethub = new FaucetHub($cfg_BTX_api_key, 'BTX');
         break;
       case 'DASH':
         if (!$cfg_DASH_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'DASH');
+        $faucethub = new FaucetHub($cfg_DASH_api_key, 'DASH');
         break;
       case 'DOGE':
         if (!$cfg_DOGE_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'DOGE');
+        $faucethub = new FaucetHub($cfg_DOGE_api_key, 'DOGE');
         break;
       case 'ETH':
         if (!$cfg_ETH_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'ETH');
+        $faucethub = new FaucetHub($cfg_ETH_api_key, 'ETH');
         break;
       case 'LTC':
         if (!$cfg_LTC_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'LTC');
+        $faucethub = new FaucetHub($cfg_LTC_api_key, 'LTC');
         break;
       case 'PPC':
         if (!$cfg_PPC_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'PPC');
+        $faucethub = new FaucetHub($cfg_PPC_api_key, 'PPC');
         break;
       case 'XPM':
         if (!$cfg_XPM_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_fh_api_key, 'XPM');
+        $faucethub = new FaucetHub($cfg_XPM_api_key, 'XPM');
         break;
       default:
         $errmsg = '<p>Unknown currency.</p>';
@@ -305,7 +305,7 @@
               case 'LTC':
               case 'PPC':
               case 'XPM':
-                $faucethub_ref = new FaucetHub($cfg_fh_api_key, $referrer_currency);
+                $faucethub_ref = new FaucetHub(${'cfg_' . $referrer_currency . '_api_key'}, $referrer_currency);
                 break;
               default:
                 $errmsg = '<p>Invalid referrer currency.</p>';

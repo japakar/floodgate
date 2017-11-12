@@ -32,11 +32,23 @@
   $cfg_PPC_amount  = intval((55 / 60) * $cfg_refresh_time);
   $cfg_XPM_amount  = intval((215 / 60) * $cfg_refresh_time);
 
-  $cfg_fh_api_key = 'XXXREDACTEDXXXXXXXXXX2af10f8b552'; // You should know what this is already.
-  $cfg_set_mining = false; // Set this to true once your faucet is registered under the "PTP" and "Mining" categories on faucethub.
+  /* Make sure that the faucet is set up under the "PTP" and "Mining" categories on Faucet Hub's
+   * faucet manager page, or users could get their accounts frozen for claiming too often! */
+  $cfg_set_mining = true; // Set this to true once your faucet(s) is/are registered under the "PTP" and "Mining" categories on faucethub.
 
-  /* Your coinhive site key for voluntary mining with the "enable mining" checkbox */
-  $cfg_coinhive_id = 'XXXREDACTEDXXXXXXXXXXpW3XVx9gRmy';
+  /* Faucet Hub API Key(s)
+   * You can set them all to the same key if you want.
+   * Some people just like to register a different "faucet" for each currency. */
+  $cfg_BCH_api_key  = null;
+  $cfg_BLK_api_key  = 'XXXREDACTEDXXXXXXXXX4d533ffd9bfc';
+  $cfg_BTC_api_key  = null;
+  $cfg_BTX_api_key  = null;
+  $cfg_DASH_api_key = null;
+  $cfg_DOGE_api_key = 'XXXREDACTEDXXXXXXXXX7abd256ba6c8';
+  $cfg_ETH_api_key  = null;
+  $cfg_LTC_api_key  = null;
+  $cfg_PPC_api_key  = 'XXXREDACTEDXXXXXXXXX75a6a7c815ec';
+  $cfg_XPM_api_key  = 'XXXREDACTEDXXXXXXXXX75a6a7c815ec';
 
   /* Set this to true and the faucet will automatically ban some botters and abusers by adding `deny from IP_ADDRESS` lines to /.htaccess */
   /* Leave this disabled unless your server uses .htaccess files and you are fine with an automated script modifying it! */
@@ -58,8 +70,11 @@
     $cfg_coinhive_captcha_site = 'XXXREDACTEDXXXXXXXXXXpW3XVx9gRmy';
     $cfg_coinhive_captcha_secret = 'XXXREDACTEDXXXXXXXXXXjM4RJBARy3n';
   } else if ($cfg_use_shortlink) {
+    // You can change the shortlink provider in shortlink.lib.php
     // eliwin is ref-only: https://elibtc.win/ref/sheshiresat
     $cfg_eliwin_key = 'XXXREDACTEDXXXXXXXXXXXXXXXXXX7bd1a9161f1';
+
+    // another good site that pays _very_ well (but doesn't have any captcha) is http://1ink.cc/?ref=16969
   }
 
   $cfg_enable_nastyhosts = true; // Whether to check with nastyhosts on the claim page.
@@ -82,6 +97,6 @@
   }
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.5.0'; // The faucet name.
-  $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet.
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.6.0'; // The faucet name.
+  $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet. (Where index.php is)
 ?>
