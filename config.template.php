@@ -79,7 +79,8 @@
 
   $cfg_enable_nastyhosts = true; // Whether to check with nastyhosts on the claim page.
   if ($cfg_enable_nastyhosts) {
-    $cfg_nastyhost_whitelist = [
+    $cfg_nastyhost_whitelist = [ // IP addresses that you don't want to check
+      'IP address' => 'description (can be anything you want)',
       '8.8.8.8' => 'Generic IP address',
       '127.0.0.1' => 'someone',
     ];

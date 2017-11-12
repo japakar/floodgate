@@ -2,16 +2,10 @@
   require_once 'config.php';
 
   if ($cfg_enable_nastyhosts) {
-    if (!isset($cfg_nastyhost_whitelist[user_ip()])) {
-      /* Check with nastyhosts.com */
-      $nh_result = file_get_contents('http://v1.nastyhosts.com/' . user_ip());
-      $nh_result = json_decode($nh_result, true);
-      if($nh_result["suggestion"] == 'deny') {
-        header('Location: ' . $cfg_site_url . '/nastyhost.php', true, 302);
-        exit;
-      }
-      unset($nh_result);
-      /* I might be using too many different paradigms here... */
+    require_once 'nastyhosts.lib.php';
+    if (check_nastyhosts(user_ip())) {
+      header('Location: ' . $cfg_site_url . '/nastyhost.php', true, 302);
+      exit;
     }
   }
 
