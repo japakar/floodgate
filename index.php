@@ -1,6 +1,10 @@
 <?php require 'config.php'; ?>
-<!DOCTYPE html>
 <?php
+  if (isset($_GET['ref_source'])) { // undocumented alias for cryptator
+    header('Location: ' . str_replace('?ref_source=', '?rotator=', str_replace('&ref_source=', '&rotator=', (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]")), true, 301);
+    exit;
+  }
+
   $referrer = null; // The address of the referrer.
   if (isset($_GET['r']))
     $referrer = htmlspecialchars(stripslashes($_GET['r']));
@@ -11,6 +15,7 @@
 
   $referred = (isset($referrer) && isset($referrer_currency)); // Whether the user was referred.
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
  <title><?php echo $cfg_site_name; ?></title>
@@ -36,6 +41,7 @@
        echo '<input type="hidden" name="r" value="' . $referrer . '"/>';
        echo '<input type="hidden" name="rc" value="' . $referrer_currency . '"/>';
      }
+     if (isset($_GET['rotator'])) echo '<input type="hidden" name="rotator" value="' . htmlspecialchars(stripslashes($_GET['rotator'])) . '"/>';
    ?>
    <?php
      if ($cfg_use_captcha) {
