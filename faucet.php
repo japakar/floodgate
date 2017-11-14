@@ -393,10 +393,13 @@
 
     if ($result['success'] === true) {
       if ($cfg_enable_google_analytics) {
-        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'claim\', {';
         echo '\'currency\': \'' . $currency . '\',';
-        echo '\'referred\': ' . $referred . ',';
+        if ($referred)
+          echo '\'referred\': true,';
+        else
+          echo '\'referred\': false,';
         echo '});';
         echo '</script>';
       }
@@ -406,7 +409,7 @@
         echo '<p>(Some ' . $referrer_currency . ' was sent to ' . $referrer . ' as well.)</p>';
     } else if (json_decode($result['response'], true)['status'] == 402) {
       if ($cfg_enable_google_analytics) {
-        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'faucet_dry\', {';
         echo '\'currency\': \'' . $currency . '\',';
         echo '});';
@@ -417,7 +420,7 @@
       echo '<p>(I would put a little &ldquo;faucet balance&rdquo; widget on the main page, but that would currently result in a <em>TON</em> of API requests&hellip;)</p>';
     } else {
       if ($cfg_enable_google_analytics) {
-        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'fh_error\', {';
         echo '\'status\': \'' . $result['status'] . '\',';
         echo '});';
@@ -432,14 +435,14 @@
   } else {
     if ($dryrun) {
       if ($cfg_enable_google_analytics) {
-        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'dry_run\');';
         echo '</script>';
       }
       echo '<p>No claim detected, here is what the page looks like.</p>';
     } else if ($too_fast) {
       if ($cfg_enable_google_analytics) {
-        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'too_fast\', {';
         echo '\'currency\': \'' . $currency . '\',';
         echo '});';
@@ -452,7 +455,7 @@
       echo '<hr/><p>Timestamp of last refresh: <time>' . $current_time . '</time></p>';
     } else if ($referrer_abuse) {
       if ($cfg_enable_google_analytics) {
-        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'double_claim\');';
         echo '</script>';
       }
@@ -461,7 +464,7 @@
       echo '<p>You can get in <em>deep</em> trouble if you do this on a faucet that does not block it; Faucet&nbsp;Hub will automatically detect it and freeze your account and reverse every faucet claim you have made.</p>';
     } else {
       if ($cfg_enable_google_analytics) {
-        echo '<script tyle="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}';
+        echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'error\');';
         echo '</script>';
       }
