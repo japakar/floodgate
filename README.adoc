@@ -1,5 +1,8 @@
-= What everything does
+= Documentation
 :toc:
+
+Want to make a faucet of your own?
+link:https://www.000webhost.com/1021701.html[This site has good free PHP hosting!]
 
 == Files
 
