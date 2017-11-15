@@ -32,7 +32,7 @@ An informational page explaining why a user is blocked if they get a positive on
 It is entirely possible that it is a false positive, so people don&#700;t get banned automatically simply for having a blacklisted address.
 (They can&#700;t claim unless you whitelist them though.)
 'verify.php'::
-Checks if the CAPTCHA was solved.
+Checks if the CAPTCHA was solved and constructs shortlinks, etc.
 
 The following files are distributed as `.template.php`, and have to be renamed to `.php` after you set them up.
 This is to prevent you from successfully running a half-configured faucet.
@@ -72,7 +72,7 @@ Contains the code for using the IPHub API.
 'nastyhosts.lib.php'::
 Contains the code for using the NastyHosts API.
 'shortlink.lib.php'::
-Routines for using a shortlink instead of a CAPTCHA.
+Routines for using shortlinks.
 You can change the shortlink by editing this file.
 
 Miscellaneous files:

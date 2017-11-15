@@ -60,16 +60,17 @@
 
   $cfg_cookie_key = 'DIE BOTS DIE'; // Set this to a secret string that only you know.
 
-  $cfg_use_captcha = true; // Set this to false to disable the CAPTCHA
-  $cfg_use_shortlink = false; // You can use a shortlink instead of a CAPTCHA
-
   /* The default CAPTCHA is coinhive, and the default shortlink is eliwin;
    * you can change them, but you've got to rewrite captcha.lib.php or shortlink.lib.php yourself. */
 
+  $cfg_use_captcha = true; // Set this to false to disable the CAPTCHA
   if ($cfg_use_captcha) {
     $cfg_coinhive_captcha_site = 'XXXREDACTEDXXXXXXXXXXpW3XVx9gRmy';
     $cfg_coinhive_captcha_secret = 'XXXREDACTEDXXXXXXXXXXjM4RJBARy3n';
-  } else if ($cfg_use_shortlink) {
+  }
+
+  $cfg_use_shortlink = false; // You can also use a shortlink
+  if ($cfg_use_shortlink) {
     // You can change the shortlink provider in shortlink.lib.php
     // eliwin is ref-only: https://elibtc.win/ref/sheshiresat
     $cfg_eliwin_key = 'XXXREDACTEDXXXXXXXXXXXXXXXXXX7bd1a9161f1';
