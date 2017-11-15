@@ -76,6 +76,7 @@
     $cfg_eliwin_key = 'XXXREDACTEDXXXXXXXXXXXXXXXXXX7bd1a9161f1';
 
     // another good site that pays _very_ well (but doesn't have any captcha) is http://1ink.cc/?ref=16969
+    // https://adbilty.me/ref/sheshiresat --- the same as eliwin, but with popups and higher pay
   }
 
   $cfg_enable_nastyhosts = true; // Whether to check with nastyhosts on the claim page.
@@ -111,6 +112,6 @@
   }
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.7.0'; // The faucet name.
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.8.0'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet. (Where index.php is)
 ?>
