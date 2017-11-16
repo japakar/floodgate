@@ -17,8 +17,6 @@
     }
   }
 
-  // TODO: put the claim timestamps in /tmp/* instead of ./*
-
   $amount = rand(9, 11) / 10;
 
   include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options_process.php';
@@ -41,61 +39,43 @@
     if ($cfg_use_captcha || $cfg_use_shortlink) {
       if (isset($_GET['key'])) {
         if (htmlspecialchars(stripslashes($_GET['key'])) != md5($address . ' ' . $cfg_cookie_key)) {
+          http_response_code(400);
           require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/ban.php';
           ban_user('Invalid key');
           die('Congragulations, you are banned!');
         }
-      } else
+      } else {
+        http_response_code(400);
         die('Missing key.');
+      }
     }
 
     if ((strlen($address) < 1) || (strlen($currency) < 1)) {
+      http_response_code(400);
       $errmsg = '<p>One of the parameters is empty.</p>';
       goto end_payout;
     }
 
     switch ($currency) {
       case 'BCH':
-        if (!$cfg_BCH_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_BCH_api_key, 'BCH');
-        break;
       case 'BLK':
-        if (!$cfg_BLK_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_BLK_api_key, 'BLK');
-        break;
       case 'BTC':
-        if (!$cfg_BTC_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_BTC_api_key, 'BTC');
-        break;
       case 'BTX':
-        if (!$cfg_BTX_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_BTX_api_key, 'BTX');
-        break;
       case 'DASH':
-        if (!$cfg_DASH_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_DASH_api_key, 'DASH');
-        break;
       case 'DOGE':
-        if (!$cfg_DOGE_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_DOGE_api_key, 'DOGE');
-        break;
       case 'ETH':
-        if (!$cfg_ETH_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_ETH_api_key, 'ETH');
-        break;
       case 'LTC':
-        if (!$cfg_LTC_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_LTC_api_key, 'LTC');
-        break;
       case 'PPC':
-        if (!$cfg_PPC_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_PPC_api_key, 'PPC');
-        break;
       case 'XPM':
-        if (!$cfg_XPM_enabled) {$errmsg = '<p>Invalid currency. Nice try.</p>'; goto end_payout;}
-        $faucethub = new FaucetHub($cfg_XPM_api_key, 'XPM');
+        if (!${'cfg_' . $currency . '_enabled'}) {
+          http_response_code(400);
+          $errmsg = '<p>Invalid currency. Nice try.</p>';
+          goto end_payout;
+        }
+        $faucethub = new FaucetHub(${'cfg_' . $currency . '_api_key'}, $currency);
         break;
       default:
+        http_response_code(400);
         $errmsg = '<p>Unknown currency.</p>';
         goto end_payout;
     }
@@ -103,13 +83,18 @@
     $current_time = time();
     $prev_time = 0;
 
+    if (!file_exists(sys_get_temp_dir() . '/floodgate'))
+      mkdir(sys_get_temp_dir() . '/floodgate');
+    if (!file_exists(sys_get_temp_dir() . '/floodgate/addresses'))
+      mkdir(sys_get_temp_dir() . '/floodgate/addresses');
+
     function too_fast_address($addr) {
       global $current_time;
       global $prev_time;
       global $cfg_refresh_time;
       global $cfg_fh_username;
       $tf = false;
-      $pth = 'addresses/' . rawurlencode($addr);
+      $pth = sys_get_temp_dir() . '/floodgate/addresses/' . rawurlencode($addr);
 
       if (file_exists($pth)) {
         $fp = fopen($pth, 'r') or die('Unable to open file! <strong>Alert ' . $cfg_fh_username . ' immediately</strong>!');
@@ -159,8 +144,12 @@
       if (isset($a['payout_user_hash'])) {
         $user_hash = $a['payout_user_hash'];
       } else {
+        http_response_code(502);
         $errmsg = '<p>Error connecting to FaucetHUB to check address!</p><dl><dt>Status</dt><dd>' . $a['status'] . '</dd><dt>Message</dt><dd>' . $a['message'] . '</dd></dl>';
-        if ($a['status'] == 441) $overload = true;
+        if ($a['status'] == 441) {
+          http_response_code(503);
+          $overload = true;
+        }
         goto end_payout;
       }
 
@@ -171,6 +160,7 @@
           $user_ip = user_ip();
 
           if (!$user_ip) {
+            http_response_code(400);
             $errmsg = '<p>Could not detect your IP address. I need it to help make sure you aren&#700;t an asshole!</p>';
             goto end_payout;
           }
@@ -283,6 +273,7 @@
           if ($referred) {
             if (!$refer_file) {
               if (!isset($_GET['r']) || !isset($_GET['rc'])) {
+                http_response_code(400);
                 $errmsg = '<p>The referral URL is incorrect. It should have both &ldquo;<code>&amp;r=</code>&rdquo;, and &ldquo;<code>&amp;rc=</code>&rdquo;!</p>';
                 goto end_payout;
               }
@@ -292,6 +283,7 @@
             }
 
             if ((strlen($referrer) < 1) || (strlen($referrer_currency) < 1)) {
+              http_response_code(400);
               $errmsg = '<p>One of the parameters is empty.</p>';
               goto end_payout;
             }
@@ -310,6 +302,7 @@
                 $faucethub_ref = new FaucetHub(${'cfg_' . $referrer_currency . '_api_key'}, $referrer_currency);
                 break;
               default:
+                http_response_code(400);
                 $errmsg = '<p>Invalid referrer currency.</p>';
                 goto end_payout;
             }
@@ -318,13 +311,17 @@
             if (isset($a['payout_user_hash'])) {
               $referrer_hash = $a['payout_user_hash'];
             } else {
+              http_response_code(502);
               $errmsg = '<p>Error connecting to FaucetHUB to check referral!</p><dl><dt>Status</dt><dd>' . $a['status'] . '</dd><dt>Message</dt><dd>' . $a['message'] . '</dd></dl>';
-              if ($a['status'] == 441)
+              if ($a['status'] == 441) {
+                http_response_code(503);
                 $overload = true;
+              }
               goto end_payout;
             }
 
             if ($referrer_hash == $user_hash) {
+              http_response_code(400);
               $referrer_abuse = true;
             } else {
               $faucethub_ref->sendReferralEarnings($referrer, intval(($amount * ${'cfg_' . $referrer_currency . '_amount'}) / 2));
@@ -352,6 +349,10 @@
   }
 
   end_payout:
+  if (isset($too_fast) && $too_fast) {
+    http_response_code(429);
+    header('Retry-After: ' . (($prev_time + $cfg_refresh_time) - $current_time), true);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
