@@ -17,8 +17,6 @@
     }
   }
 
-  // TODO: put the claim timestamps in /tmp/* instead of ./*
-
   $amount = rand(9, 11) / 10;
 
   include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options_process.php';
@@ -103,13 +101,18 @@
     $current_time = time();
     $prev_time = 0;
 
+    if (!file_exists(sys_get_temp_dir() . '/floodgate'))
+      mkdir(sys_get_temp_dir() . '/floodgate');
+    if (!file_exists(sys_get_temp_dir() . '/floodgate/addresses'))
+      mkdir(sys_get_temp_dir() . '/floodgate/addresses');
+
     function too_fast_address($addr) {
       global $current_time;
       global $prev_time;
       global $cfg_refresh_time;
       global $cfg_fh_username;
       $tf = false;
-      $pth = 'addresses/' . rawurlencode($addr);
+      $pth = sys_get_temp_dir() . '/floodgate/addresses/' . rawurlencode($addr);
 
       if (file_exists($pth)) {
         $fp = fopen($pth, 'r') or die('Unable to open file! <strong>Alert ' . $cfg_fh_username . ' immediately</strong>!');
