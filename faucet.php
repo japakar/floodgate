@@ -33,12 +33,12 @@
   require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/faucethub.php';
 
   if (isset($_GET['address']) && isset($_GET['currency'])) {
-    $address = htmlspecialchars(stripslashes($_GET['address']));
-    $currency = htmlspecialchars(stripslashes($_GET['currency']));
+    $address = '' . $_GET['address'];
+    $currency = '' . $_GET['currency'];
 
     if ($cfg_use_captcha || $cfg_use_shortlink) {
       if (isset($_GET['key'])) {
-        if (htmlspecialchars(stripslashes($_GET['key'])) != md5($address . ' ' . $cfg_cookie_key)) {
+        if (rawurldecode($_GET['key']) != md5($address . ' ' . $cfg_cookie_key)) {
           http_response_code(400);
           require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/ban.php';
           ban_user('Invalid key');
@@ -169,102 +169,102 @@
 
           if (!$referred) {
             if ($cfg_BCH_enabled) {
-              if (file_exists('referrers/BCH/' . $address)) {
-                $fp = fopen('referrers/BCH/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/BCH/' . rawurlencode($address))) {
+                $fp = fopen('referrers/BCH/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'BCH';
-                $referrer = fread($fp, filesize('referrers/BCH/' . $address));
+                $referrer = fread($fp, filesize('referrers/BCH/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
             if ($cfg_BLK_enabled) {
-              if (file_exists('referrers/BLK/' . $address)) {
-                $fp = fopen('referrers/BLK/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/BLK/' . rawurlencode($address))) {
+                $fp = fopen('referrers/BLK/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'BLK';
-                $referrer = fread($fp, filesize('referrers/BLK/' . $address));
+                $referrer = fread($fp, filesize('referrers/BLK/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
             if ($cfg_BTC_enabled) {
-              if (file_exists('referrers/BTC/' . $address)) {
-                $fp = fopen('referrers/BTC/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/BTC/' . rawurlencode($address))) {
+                $fp = fopen('referrers/BTC/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'BTC';
-                $referrer = fread($fp, filesize('referrers/BTC/' . $address));
+                $referrer = fread($fp, filesize('referrers/BTC/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
             if ($cfg_BTX_enabled) {
-              if (file_exists('referrers/BTX/' . $address)) {
-                $fp = fopen('referrers/BTX/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/BTX/' . rawurlencode($address))) {
+                $fp = fopen('referrers/BTX/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'BTX';
-                $referrer = fread($fp, filesize('referrers/BTX/' . $address));
+                $referrer = fread($fp, filesize('referrers/BTX/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
             if ($cfg_DASH_enabled) {
-              if (file_exists('referrers/DASH/' . $address)) {
-                $fp = fopen('referrers/DASH/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/DASH/' . rawurlencode($address))) {
+                $fp = fopen('referrers/DASH/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'DASH';
-                $referrer = fread($fp, filesize('referrers/DASH/' . $address));
+                $referrer = fread($fp, filesize('referrers/DASH/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
             if ($cfg_DOGE_enabled) {
-              if (file_exists('referrers/DOGE/' . $address)) {
-                $fp = fopen('referrers/DOGE/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/DOGE/' . rawurlencode($address))) {
+                $fp = fopen('referrers/DOGE/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'DOGE';
-                $referrer = fread($fp, filesize('referrers/DOGE/' . $address));
+                $referrer = fread($fp, filesize('referrers/DOGE/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
             if ($cfg_ETH_enabled) {
-              if (file_exists('referrers/ETH/' . $address)) {
-                $fp = fopen('referrers/ETH/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/ETH/' . rawurlencode($address))) {
+                $fp = fopen('referrers/ETH/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'ETH';
-                $referrer = fread($fp, filesize('referrers/ETH/' . $address));
+                $referrer = fread($fp, filesize('referrers/ETH/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
             if ($cfg_LTC_enabled) {
-              if (file_exists('referrers/LTC/' . $address)) {
-                $fp = fopen('referrers/LTC/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/LTC/' . rawurlencode($address))) {
+                $fp = fopen('referrers/LTC/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'LTC';
-                $referrer = fread($fp, filesize('referrers/LTC/' . $address));
+                $referrer = fread($fp, filesize('referrers/LTC/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
             if ($cfg_PPC_enabled) {
-              if (file_exists('referrers/PPC/' . $address)) {
-                $fp = fopen('referrers/PPC/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/PPC/' . rawurlencode($address))) {
+                $fp = fopen('referrers/PPC/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'PPC';
-                $referrer = fread($fp, filesize('referrers/PPC/' . $address));
+                $referrer = fread($fp, filesize('referrers/PPC/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
             if ($cfg_XPM_enabled) {
-              if (file_exists('referrers/XPM/' . $address)) {
-                $fp = fopen('referrers/XPM/' . $address, 'r') or die('I/O Error.');
+              if (file_exists('referrers/XPM/' . rawurlencode($address))) {
+                $fp = fopen('referrers/XPM/' . rawurlencode($address), 'r') or die('I/O Error.');
                 $referred = true;
                 $refer_file = true;
                 $referrer_currency = 'XPM';
-                $referrer = fread($fp, filesize('referrers/XPM/' . $address));
+                $referrer = fread($fp, filesize('referrers/XPM/' . rawurlencode($address)));
                 fclose($fp);
               }
             }
@@ -278,8 +278,8 @@
                 goto end_payout;
               }
 
-              $referrer = htmlspecialchars(stripslashes($_GET['r']));
-              $referrer_currency = htmlspecialchars(stripslashes($_GET['rc']));
+              $referrer = $_GET['r'];
+              $referrer_currency = $_GET['rc'];
             }
 
             if ((strlen($referrer) < 1) || (strlen($referrer_currency) < 1)) {
@@ -326,8 +326,8 @@
             } else {
               $faucethub_ref->sendReferralEarnings($referrer, intval(($amount * ${'cfg_' . $referrer_currency . '_amount'}) / 2));
               if (!$refer_file) {
-                if (!file_exists('referrers/' . $referrer_currency . '/' . $address)) {
-                  $fp = fopen('referrers/' . $referrer_currency . '/' . $address, 'w');
+                if (!file_exists('referrers/' . rawurlencode($referrer_currency) . '/' . rawurlencode($address))) {
+                  $fp = fopen('referrers/' . rawurlencode($referrer_currency) . '/' . rawurlencode($address), 'w');
                   if ($fp) {
                     fwrite($fp, $referrer);
                     fclose($fp);
@@ -396,7 +396,7 @@
       if ($cfg_enable_google_analytics) {
         echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'claim\', {';
-        echo '\'currency\': \'' . $currency . '\',';
+        echo '\'currency\': \'' . htmlspecialchars($currency, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '\',';
         if ($referred)
           echo '\'referred\': true,';
         else
@@ -404,34 +404,31 @@
         echo '});';
         echo '</script>';
       }
-      echo '<p>Just leave this page open, and it should automatically refresh and send you more ' . $currency . ' every ' . ($cfg_refresh_time / 60) . ' minutes!</p>';
-      echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . $address . '&amp;rc=' . $currency . '</code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>';
+      echo '<p>Just leave this page open, and it should automatically refresh and send you more ' . htmlspecialchars($currency, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . ' every ' . ($cfg_refresh_time / 60) . ' minutes!</p>';
+      echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . rawurlencode($address) . '&amp;rc=' . rawurlencode($currency) . '</code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>';
       if ($referred)
-        echo '<p>(Some ' . $referrer_currency . ' was sent to ' . $referrer . ' as well.)</p>';
+        echo '<p>(Some ' . htmlspecialchars($referrer_currency, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . ' was sent to ' . htmlspecialchars($referrer, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . ' as well.)</p>';
     } else if (json_decode($result['response'], true)['status'] == 402) {
       if ($cfg_enable_google_analytics) {
         echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'faucet_dry\', {';
-        echo '\'currency\': \'' . $currency . '\',';
+        echo '\'currency\': \'' . htmlspecialchars($currency, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '\',';
         echo '});';
         echo '</script>';
       }
       echo '<p>The faucet is out of this particular currency. Want to try another one?</p>';
-      echo '<p>(A few currencies depend on the exchange, the faucet will usually be re-filled once ' . $cfg_fh_username . '&#700;s &lsquo;buy&rsquo; orders are filled.) (If you are <em>really</em> impatient, perhaps someone will /tip ' . $cfg_fh_username . ' some ' . $currency . '?)</p>';
+      echo '<p>(A few currencies depend on the exchange, the faucet will usually be re-filled once ' . $cfg_fh_username . '&#700;s &lsquo;buy&rsquo; orders are filled.) (If you are <em>really</em> impatient, perhaps someone will /tip ' . $cfg_fh_username . ' some ' . htmlspecialchars($currency, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '?)</p>';
       echo '<p>(I would put a little &ldquo;faucet balance&rdquo; widget on the main page, but that would currently result in a <em>TON</em> of API requests&hellip;)</p>';
     } else {
       if ($cfg_enable_google_analytics) {
         echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'fh_error\', {';
-        echo '\'status\': \'' . $result['status'] . '\',';
+        echo '\'status\': \'' . htmlspecialchars($result['status'], ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '\',';
         echo '});';
         echo '</script>';
       }
       echo '<p>Please contact ' . $cfg_fh_username . ' on FaucetHUB and let them know; they can&#700;t see the errors due to the huge volume of claims!</p>';
-      echo '<dl><dt>Status</dt><dd>' . $result['status'] . '</dd><dt>Message</dt><dd>' . $result['message'] . '</dd></dl>';
-      echo '<hr/>';
-      echo '<p>Tried to send ' . intval($amount * (${'cfg_' . $currency . '_amount'} * $cfg_refresh_time)) . '</p>';
-      echo '<p>intval(' . $amount . ' &times; (' . ${'cfg_' . $currency . '_amount'} . ' &times; ' . $cfg_refresh_time . '));</p>';
+      echo '<dl><dt>Status</dt><dd>' . htmlspecialchars($result['status'], ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '</dd><dt>Message</dt><dd>' . htmlspecialchars($result['message'], ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '</dd></dl>';
     }
   } else {
     if ($dryrun) {
@@ -445,13 +442,13 @@
       if ($cfg_enable_google_analytics) {
         echo '<script type="text/javascript">';
         echo 'gtag(\'event\', \'too_fast\', {';
-        echo '\'currency\': \'' . $currency . '\',';
+        echo '\'currency\': \'' . htmlspecialchars($currency, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '\',';
         echo '});';
         echo '</script>';
       }
-      echo '<p>Just leave this page open, and it should automatically send you more ' . $currency . ' every ' . ($cfg_refresh_time / 60) . ' minutes!</p>';
+      echo '<p>Just leave this page open, and it should automatically send you more ' . htmlspecialchars($currency, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . ' every ' . ($cfg_refresh_time / 60) . ' minutes!</p>';
       echo '<p>Time until next payout: ' . (($prev_time + $cfg_refresh_time) - $current_time) . ' seconds.</p>';
-      echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . $address . '&amp;rc=' . $currency . '</code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>';
+      echo '<p>Referral link: <code>' . $cfg_site_url . '?r=' . htmlspecialchars($address, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '&amp;rc=' . htmlspecialchars($currency, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '</code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>';
       echo '<hr/><p>Timestamp of last claim: <time>' . $prev_time . '</time></p>';
       echo '<hr/><p>Timestamp of last refresh: <time>' . $current_time . '</time></p>';
     } else if ($referrer_abuse) {
