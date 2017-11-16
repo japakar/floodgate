@@ -1,8 +1,8 @@
 <?php
-  require_once 'config.php';
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
   if ($cfg_enable_nastyhosts) {
-    require_once 'nastyhosts.lib.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/nastyhosts.php';
     if (check_nastyhosts(user_ip())) {
       header('Location: ' . $cfg_site_url . '/nastyhost.php', true, 302);
       exit;
@@ -10,7 +10,7 @@
   }
 
   if ($cfg_enable_iphub) {
-    require_once 'iphub.lib.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/iphub.php';
     if (check_iphub(user_ip())) {
       header('Location: ' . $cfg_site_url . '/iphub_block.php', true, 302);
       exit;
@@ -21,7 +21,7 @@
 
   $amount = rand(9, 11) / 10;
 
-  include 'claim_options_process.i.php';
+  include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options_process.php';
 
   date_default_timezone_set('UTC');
 
@@ -32,7 +32,7 @@
   $too_fast = false;
   $referrer_abuse = false;
 
-  require_once 'faucethub.php';
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/faucethub.php';
 
   if (isset($_GET['address']) && isset($_GET['currency'])) {
     $address = htmlspecialchars(stripslashes($_GET['address']));
@@ -41,7 +41,7 @@
     if ($cfg_use_captcha || $cfg_use_shortlink) {
       if (isset($_GET['key'])) {
         if (htmlspecialchars(stripslashes($_GET['key'])) != md5($address . ' ' . $cfg_cookie_key)) {
-          require_once 'ban.lib.php';
+          require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/ban.php';
           ban_user('Invalid key');
           die('Congragulations, you are banned!');
         }
@@ -358,7 +358,7 @@
 <head>
 <title><?php echo $cfg_site_name; ?></title>
 <link rel="stylesheet" href="/main.css"/>
-<?php include 'head.i.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
 <?php
   if ($paid) {
     if ($result['success'] === true) {
@@ -384,7 +384,7 @@
 ?>
 </head>
 <body>
-<header><?php include 'navbar.i.php'; ?></header>
+<header><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/navbar.php'; ?></header>
 <main>
 <h1><?php echo $cfg_site_name; ?></h1>
 <?php
@@ -475,8 +475,8 @@
 <hr/>
 <p><strong>Do not bookmark this page!</strong> Use <a href="<?php echo $cfg_site_url; ?>"><?php echo $cfg_site_url; ?></a> instead. (If the claim URL changes and you visit this page directly, you might be mistaken for a bot and banned.)</p>
 <hr/>
-<?php include 'iframetraffic.i.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/iframetraffic.php'; ?>
 </main>
-<footer><?php include 'ads.i.php'; ?></footer>
+<footer><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads.php'; ?></footer>
 </body>
 </html>

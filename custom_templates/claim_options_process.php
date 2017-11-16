@@ -1,5 +1,4 @@
 <?php
-//DO NOT REMOVE ANYTHING ABOVE THIS LINE
 
 /* You can make options affect the payout here.
  * All payouts are multiplied by $amount, so
@@ -8,5 +7,4 @@
 
 if (isset($_GET['miner'])) $amount = $amount + 0.05; // add 5% for people who allowed mining
 
-//DO NOT REMOVE ANYTHING BELOW THIS LINE
 ?>

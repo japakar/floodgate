@@ -1,15 +1,13 @@
-<?php require_once 'config.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
  <title>IPHub Blacklisted You</title>
  <link rel="stylesheet" href="/main.css"/>
- <?php include 'head.i.php'; ?>
+ <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
 </head>
 <body>
-<header>
- <?php include 'navbar.i.php'; ?>
-</header>
+<header><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/navbar.php'; ?></header>
 <main>
  <h1>IPHub Blacklisted You</h1>
  <p>Sorry, but your IP address, <code><?php echo user_ip(); ?></code> is flagged by <a href="https://iphub.info">IPHub</a>.</p>
@@ -27,8 +25,6 @@
   echo file_get_contents('http://v2.api.iphub.info/ip/' . user_ip(), false, $context);
  ?></code></pre>
 </main>
-<footer>
- <?php include 'ads_q.i.php'; ?>
-</footer>
+<footer><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads_q.php'; ?></footer>
 </body>
 </html>
