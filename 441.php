@@ -1,19 +1,16 @@
-<?php require_once 'config.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
  <title>Faucet Overloaded</title>
  <link rel="stylesheet" href="/main.css"/>
- <?php include 'head.i.php'; ?>
+ <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
 </head>
 <body>
-<header>
- <?php include 'navbar.i.php'; ?>
-</header>
+<header><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/navbar.php'; ?></header>
 <main>
  <h1>Faucet Overloaded</h1>
  <p>Please wait a few minutes and try again.</p>
- <p>Why not take the opportunity to claim from some other <a href="http://0xc9.net/faucets.html">higher-paying faucets</a>?</p>
  <h2>Why?</h2>
  <p>According to FaucetHUB:</p>
  <blockquote>
@@ -26,8 +23,6 @@
   </ul>
  </blockquote>
 </main>
-<footer>
- <?php include 'ads_q.i.php'; ?>
-</footer>
+<footer><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads_q.php'; ?></footer>
 </body>
 </html>

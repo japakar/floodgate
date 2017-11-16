@@ -54,8 +54,9 @@
   /* Leave this disabled unless your server uses .htaccess files and you are fine with an automated script modifying it! */
   $cfg_enable_ban = false;
 
+  /* Should return the user's IP address. Change it if you use CloudFlare. */
   function user_ip() {
-    return getenv('HTTP_CLIENT_IP')?:getenv('REMOTE_ADDR')?:false;
+    return $_SERVER['REMOTE_ADDR'];
   }
 
   $cfg_cookie_key = 'DIE BOTS DIE'; // Set this to a secret string that only you know.
@@ -112,6 +113,6 @@
   }
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v3.8.0'; // The faucet name.
-  $cfg_site_url = 'http://faucet.0xc9.net'; // The base URL of the faucet. (Where index.php is)
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate (DEVELOPMENT)'; // The faucet name.
+  $cfg_site_url = 'http://faucet.0xc9.net'; // The URL of the faucet.
 ?>

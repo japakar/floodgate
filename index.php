@@ -1,4 +1,4 @@
-<?php require 'config.php'; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/config.php'; ?>
 <?php
   if (isset($_GET['ref_source'])) { // undocumented alias for cryptator
     header('Location: ' . str_replace('?ref_source=', '?rotator=', str_replace('&ref_source=', '&rotator=', (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]")), true, 301);
@@ -20,14 +20,12 @@
 <head>
  <title><?php echo $cfg_site_name; ?></title>
  <link rel="stylesheet" href="/main.css"/>
- <?php include 'head.i.php'; ?>
+ <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
 </head>
 <body>
-<header>
- <?php include 'navbar.i.php'; ?>
-</header>
+<header><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/navbar.php'; ?></header>
 <main>
- <h1><?php echo $cfg_site_name; ?></h1>
+ <h1><?php echo $cfg_site_name; ?></h1><script>NekoType="black"</script><h1 id=nl><script src="http://webneko.net/n200504.js"></script></h1>
  <p>Just enter your address below, select your currency, hit submit, and then leave the page open for tons of satoshi!</p>
  <p>There&#700;s no timers or CAPTCHAs<?php if ($cfg_use_captcha) echo ' (apart from the one on this page)'; ?>; this is one of the leakiest faucets out there!</p>
  <p>(This faucet requires your address to be linked to a <a href="http://faucethub.io/r/10082526">FaucetHUB account</a>)</p>
@@ -45,7 +43,7 @@
    ?>
    <?php
      if ($cfg_use_captcha) {
-       require_once 'captcha.lib.php';
+       require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/captcha.php';
        embed_captcha();
      }
    ?>
@@ -63,15 +61,13 @@
     <?php if ($cfg_XPM_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'XPM')) {echo 'selected="selected" ';} echo 'value="XPM">XPM (~' . ($cfg_XPM_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
    </select>
    <input id="start_claiming" type="submit" value="Start claiming"/>
-   <?php include 'claim_options.i.php'; ?>
+   <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options.php'; ?>
   </form>
  </div>
  <p>Referral link: <code><?php echo $cfg_site_url; ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>
  <?php if ($cfg_enable_google_analytics) echo '<p>By the way, this site uses Google&nbsp;Analytics and cookies. It doesn&#700;t really matter, and the information collected is <em>completely</em> anonymous and stripped of any identifying information. Nobody cares anyway; the people who <em>do</em> care about your information don&#700;t tell you that they have it. The information collected here would be akin to glancing at your feet from across the street while holding a censor bar over your face, body, and skin.<br/>Nice shoes, by the way!</p>'; ?>
  <p><!-- Please don't change this referral! It is basically my one line of profit XD --><a href='https://a-ads.com?partner=710774'>Advertise with Anonymous&nbsp;Ads</a> (Best ad network ever!)</p>
 </main>
-<footer>
- <?php include 'ads_q.i.php'; ?>
-</footer>
+<footer><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads_q.php'; ?></footer>
 </body>
 </html>

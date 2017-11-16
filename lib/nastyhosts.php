@@ -1,11 +1,11 @@
 <?php
-require_once 'config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
 // returns true if nastyhosts suggests denying the address
 function check_nastyhosts($ip) {
   global $cfg_nasythost_whitelist;
 
-  if (isset($cfg_nastyhost_whitelist[user_ip()]))
+  if (isset($cfg_nastyhost_whitelist[$ip]))
     return false;
 
   $nh_result = file_get_contents('http://v1.nastyhosts.com/' . $ip);

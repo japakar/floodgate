@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
 // returns true if iphub suggests blocking the address
 function check_iphub($ip) {
@@ -7,7 +7,7 @@ function check_iphub($ip) {
   global $cfg_iphub_key;
   global $cfg_iphub_whitelist;
 
-  if (isset($cfg_iphub_whitelist[user_ip()]))
+  if (isset($cfg_iphub_whitelist[$ip]))
     return false;
 
   $context = stream_context_create([

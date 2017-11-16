@@ -4,90 +4,50 @@
 Want to make a faucet of your own?
 link:https://www.000webhost.com/1021701.html[This site has good free PHP hosting!]
 
-== Files
+== Setup
+
+ . On Faucet&nbsp;Hub&#700;s manager page, *make sure that the faucet is set up under the &ldquo;PTP&rdquo; and &ldquo;Mining&rdquo; categories*! If it isn&#700;t, users could get their accounts frozen for claiming too often!
+ . Put everything in the document root of your site
+ . Edit 'config.template.php', then rename it to 'config.php'
+   - Every important setting is in 'config.php', so read it carefully!
+   - If you don&#700;t know how to edit it, you probably shouldn&#700;t be running a faucet in the first place.
+ . Rename the 'custom_templates/' directory to 'custom/', then edit the files inside of it
+ . Everything should work now; get some people to claim from your faucet!
+ . ???
+ . PROFIT!!!
+
+=== Updating the faucet
+
+IMPORTANT: Moving to a different MAJOR version (such as from `3.x.x` to `4.x.x`) requires you to re-install the entire faucet script from scratch. Do not attempt to update in-place.
+
+For minor updates (such as from 1.2.0 to 1.3.0):
+
+ - Read the release description for any special instructions
+ - Overwrite all the files on the server with the new versions
+ - Check 'config.template.php' for new values, and merge them into your 'config.php'
+ - Check the 'custom_temlates/' directory for new templates, move and edit any that you find
+
+== Custom Files
 
 [horizontal]
-'addresses/'::
-Stores the claim timestamp of every user address to discourage obvious cheaters.
-(I recommend cleaning this folder out once per day to save space.)
-'referrers/'::
-Saves the referrer of each address so that they still get paid if a user later visits without using the reflink.
-'users/'::
-Stores the claim timestamp of every unique user on Faucet&nbsp;Hub to prevent cheating.
-'441.php'::
-An error page explaining what is going on if the faucet is overloaded.
-(If you receive too many claims in a short period of time, the faucet will stop paying out for a minute or so.)
-+
-TIP: If this happens often, you can link:https://faucethub.io/ticket/fh[open a support ticket] and ask mexicantarget to increase the limit slightly.
-'faucet.php'::
-The claim page, where the magic happens.
-'index.php'::
-The first page people see, serves as the entry point to the faucet.
-'iphub_block.php'::
-An informational page explaining why a user was blocked by IPHub.
-'main.css'::
-Customize the site style.
-'nastyhost.php'::
-An informational page explaining why a user is blocked if they get a positive on link:http://nastyhosts.com[NastyHosts].
-It is entirely possible that it is a false positive, so people don&#700;t get banned automatically simply for having a blacklisted address.
-(They can&#700;t claim unless you whitelist them though.)
-'verify.php'::
-Checks if the CAPTCHA was solved and constructs shortlinks, etc.
-
-The following files are distributed as `.template.php`, and have to be renamed to `.php` after you set them up.
-This is to prevent you from successfully running a half-configured faucet.
-(Trust me, it is for the best.)
-
-[horizontal]
-'config.php'::
-*All the settings are in this file.*
-'ads.i.php'::
+'custom/ads.php'::
 Included at the bottom of the claim page, for ads to be shown a ton of times.
-'ads_q.i.php'::
+'custom/ads_q.php'::
 For &lsquo;quality&rsquo; ads &mdash; ads that shouldn&#700;t be shown on the automatic pages.
-'head.i.php'::
-Included in the &lt;head&gt; tag of every page, for anti-adblock and link:https://www.internetdefenseleague.org[IDL scripts], google analytics, etc.
-'iframetraffic.i.php'::
-Put sponsored sites here.
-'navbar.i.php'::
-Contents of the top navbar.
-'claim_options.i.php'::
+If an advertiser says that auto-refreshers aren&#700;t allowed, put their ad in this file instead of 'ads.php'.
+'custom/claim_options.php'::
 Extra form elements to add to the entry form on 'index.php'.
 (Can be left empty.)
-'claim_options_process.i.php'::
+'custom/claim_options_process.php'::
 For options that affect payout amounts. Included by 'faucet.php'.
 (Can also be left empty.)
-
-These files make certain optional components work.
-
-[horizontal]
-'captcha.lib.php'::
-Abstraction over the CAPTCHA code.
-You can change the CAPTCHA by editing this file.
-'ban.lib.php'::
-Contains the functions for banning and un-banning people.
-Very much a work in progress; if you think of a better way to do these things, let me know!
-'iphub.lib.php'::
-Contains the code for using the IPHub API.
-'nastyhosts.lib.php'::
-Contains the code for using the NastyHosts API.
-'shortlink.lib.php'::
-Routines for using shortlinks.
-You can change the shortlink by editing this file.
-
-Miscellaneous files:
-
-[horizontal]
-'admin.php'::
-A honeypot page.
-Everyone who visits this page gets banned.
-(If `$cfg_enable_ban` is `true`.)
-
-'''
-
-There, now that you know what everything does, modify the script, add your ads to the pages, and release another beautiful complexity-free (for the users, anyway) faucet into the wild!
-
-*Make sure that the faucet is set up under the &ldquo;PTP&rdquo; and &ldquo;Mining&rdquo; categories on Faucet&nbsp;Hub&#700;s faucet manager page, or users could get their accounts frozen for claiming too often!*
+'custom/head.php'::
+Included in the &lt;head&gt; tag of every page, for anti-adblock and link:https://www.internetdefenseleague.org[IDL scripts], google analytics, etc.
+'custom/iframetraffic.php'::
+Put sponsored sites here; it is included in the middle of the claim page.
+'custom/navbar.php'::
+This file contains the navbar at the top of most of the faucet pages.
+You can add and remove links here.
 
 == How to un-ban IP addresses
 
