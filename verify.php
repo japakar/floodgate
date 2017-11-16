@@ -31,5 +31,5 @@ if ($cfg_use_shortlink) {
   $claim_url = shortlink_create($claim_url);
 }
 
-header('Location: ' . $claim_url, true, 302);
+header('Location: ' . $claim_url, true, 303);
 ?>
