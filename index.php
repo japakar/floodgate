@@ -14,6 +14,9 @@
     $referrer_currency = htmlspecialchars(stripslashes($_GET['rc']));
 
   $referred = (isset($referrer) && isset($referrer_currency)); // Whether the user was referred.
+
+  if (!isset($_GET['rotator']))
+    header('X-Frame-Options: sameorigin', true);
 ?>
 <!DOCTYPE html>
 <html lang="en">

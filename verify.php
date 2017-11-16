@@ -19,8 +19,10 @@ unset($first);
 if ($cfg_use_captcha) {
   require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/captcha.php';
 
-  if (!verify_captcha())
+  if (!verify_captcha()) {
+    http_response_code(400);
     die('Failed to verify CAPTCHA.');
+  }
 }
 
 $claim_url .= '&key=' . urlencode(md5(htmlspecialchars(stripslashes($_POST['address'])) . ' ' . $cfg_cookie_key));
