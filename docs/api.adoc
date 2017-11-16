@@ -1,0 +1,62 @@
+= Floodgate API
+:toc:
+
+The floodgate API is mainly of use to rotator owners.
+All API actions are performed by making a request to `/api.php`
+
+All standard HTTP statuses are used, so `200` means that the request was successful, `400` means that you made an invalid request, etc.
+
+Please note that the responses from the API generally do not change much, so try not to send too many repeated requests.
+You can (and should) cache the responses.
+
+== API Methods
+
+=== `/version`
+
+Returns the version of the faucet script.
+
+.Getting the faucet version
+====
+ - GET `http://faucet.0xc9.net/api.php/version`
+====
+
+
+=== `/currencies`
+
+Returns a list of enabled currencies.
+
+.Listing the supported currencies
+====
+ - GET `http://faucet.0xc9.net/api.php/currencies`
+====
+
+
+=== `/payout?c=<CURRENCY>`
+
+Returns the average number of satoshi paid out per claim.
+
+.Getting the average payout amount for a currency
+====
+ - GET `http://faucet.0xc9.net/api.php/payout?c=BLK`
+ - GET `http://faucet.0xc9.net/api.php/payout?c=DOGE`
+====
+
+
+=== `/claim_time`
+
+Returns the minimum number of seconds between claims.
+
+.Getting the time between claims
+====
+ - GET `http://faucet.0xc9.net/api.php/claim_time`
+====
+
+
+=== `/owner`
+
+Returns the username of the faucet owner.
+
+.Getting the name of the faucet owner
+====
+ - GET `http://faucet.0xc9.net/api.php/owner`
+====
