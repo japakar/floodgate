@@ -34,7 +34,7 @@
  <p>(This faucet requires your address to be linked to a <a href="http://faucethub.io/r/10082526">FaucetHUB account</a>)</p>
  <p>(If the payout rates seem low, just remember that you get out just as much as you put in, and this faucet is much less &ldquo;labor-intensive&rdquo; than most.)</p>
  <?php if ($cfg_set_mining) echo '<p>This faucet <strong>does not</strong> freeze your account.</p>'; ?>
- <aside id="motd"><?php echo $cfg_MOTD; ?></aside>
+ <?php if (!empty($cfg_MOTD)) echo '<aside id="motd"><div style="min-width:40vw"><b>Announcements</b></div>' . $cfg_MOTD . '</aside>'; ?>
  <div style="padding-left: 1em">
   <form action="verify.php" method="post">
    <?php
@@ -51,7 +51,7 @@
        embed_captcha();
      }
    ?>
-   <input type="text" name="address" placeholder="address" size="40" style="font-family: monospace"/>
+   <input type="text" name="address" placeholder="address" size="40" style="font-family: monospace"/><br/>
    <select name="currency">
     <?php if ($cfg_BCH_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'BCH')) {echo 'selected="selected" ';} echo 'value="BCH">BCH (~' . ($cfg_BCH_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_BLK_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'BLK')) {echo 'selected="selected" ';} echo 'value="BLK">BLK (~' . ($cfg_BLK_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
@@ -65,7 +65,7 @@
     <?php if ($cfg_XPM_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'XPM')) {echo 'selected="selected" ';} echo 'value="XPM">XPM (~' . ($cfg_XPM_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
    </select>
    <input id="start_claiming" type="submit" value="Start claiming"/>
-   <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options.php'; ?>
+   <div style="max-width:80ch"><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options.php'; ?></div>
   </form>
  </div>
  <p>Referral link: <code><?php echo $cfg_site_url; ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>
