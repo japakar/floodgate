@@ -1,0 +1,77 @@
+= Google Analytics Stuff
+:toc:
+
+NOTE: As far as sheshiresat knows, everything works. She would appreciate it if someone who actually knows what they are doing could look over the code and verify that it works as described here.
+
+== Events
+
+The following events are reported to Google&nbsp;Analytics:
+
+=== `claim`
+
+This event is submitted whenever someone recieves a payout from the faucet.
+It has the following fields:
+
+[horizontal]
+`currency`::
+The currency code (`BTC`, `DOGE`, `LTC`, etc.)
+`referred`::
+A boolean (`true` or `false`) depending on whether there was a referral payment as well.
+
+=== `complete_claim`
+
+This event is submitted whenever a user stays on the claim page long enough for it to automatically refresh.
+It is usually followed immediately by another `claim` event.
+
+=== `double_claim`
+
+This event is submitted whenever a user tries to claim using their own reflink.
+Nothing is paid out, and they get a warning message.
+The faucet checks to see what account addresses are associated with, not the addresses themselves, so there is _probably_ nothing to worry about.
+
+=== `dry_run`
+
+This event is submitted whenever someone loads up the claim page without specifying an address.
+
+=== `error`
+
+This event is submitted when an error is encountered.
+The problem is almost always the user&#700;s fault.
+(invalid address, invalid currency, etc.)
+
+=== `faucet_dry`
+
+This event is submitted whenever a user makes a valid claim, only to find that the faucet has run out of funds.
+It has the following fields:
+
+[horizontal]
+`currency`::
+The currency code (`BTC`, `DOGE`, `LTC`, etc.)
+
+=== `fh_error`
+
+This event is submitted whenever an error is reported by the Faucet&nbsp;Hub API.
+It has the following fields:
+
+[horizontal]
+`status`::
+An integer corresponding to the error code.
+
+=== `too_fast`
+
+This event is submitted when a user refreshes the page faster than the set refresh time.
+It usually means that the user has an auto-refresher and is trying (and failing) to abuse the faucet.
+It could also mean that the user&#700;s device is a little too fast or their javascript implementation has a bug in the timer.
+It has the following fields:
+
+[horizontal]
+`currency`::
+The currency code (`BTC`, `DOGE`, `LTC`, etc.)
+
+== User-IDs
+
+Each user that claims from the faucet is assigned a User-ID corresponding to their Faucet&nbsp;Hub user hash.
+The user hash is a unique value associated with their account that does not change, even if their username changes; it is meant to be used for anti-fraud tracking, but it works well as a generic unique identifier as well.
+
+While User-IDs are reported automatically, you have to configure your Analytics property to support them.
+The legal &ldquo;this site is collecting information&rdquo; disclaimer is already on 'index.php'.
