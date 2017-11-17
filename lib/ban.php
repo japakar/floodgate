@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
-function ban_user($reason) {
+function ban_user(string $reason) {
   global $cfg_enable_ban;
 
   if ($cfg_enable_ban) {
