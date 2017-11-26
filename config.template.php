@@ -113,11 +113,12 @@
   }
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v4.1.0'; // The faucet name.
+  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v4.2.0'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The URL of the faucet.
+  $cfg_list_faucet = true; // Whether to include the faucet in the big list of floodgates.
 
   /* Set this to the version of the faucet source you are using. (see http://semver.org)
    * If you change the source, be sure to add "+mod" (modified) to the version! */
-  $cfg__VERSION = '4.1.0';
-  //$cfg__VERSION = '4.1.0+mod';
+  $cfg__VERSION = '4.2.0';
+  //$cfg__VERSION = '4.2.0+mod';
 ?>

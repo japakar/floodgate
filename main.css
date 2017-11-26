@@ -1,26 +1,5 @@
 /* Put "font-size" in ":root", everything else is relative. */
 
-@keyframes RAINBOW {
-  0% {
-    color: #333;
-  }
-  20% {
-    color:#06C;
-  }
-  40% {
-    color:#090;
-  }
-  60% {
-    color:#FC0;
-  }
-  80% {
-    color:#F00;
-  }
-  100% {
-    color:#606;
-  }
-}
-
 /* :root {{{ */
 :root {
     background-attachment: scroll;
@@ -165,47 +144,6 @@ dl>dt {
     hyphens: auto;
     text-align: justify;
 }
-/* }}} */
-/* }}} */
-/* dl.ul {{{ */
-/* An unordered list with descriptions for the items. */
-dl.ul {
-    display: block;
-    margin-left: 2em;
-}
-/* >dd {{{ */
-dl.ul>dd {
-    font-size: 1em;
-}
-/* }}} */
-/* >dt {{{ */
-dl.ul>dt {
-    display: list-item;
-    font-weight: normal;
-    list-style-type: disc;
-}
-/* }}} */
-/* }}} */
-/* dl.lua_table {{{ */
-/* A discription of the contents of a Lua table. */
-/* >dd {{{ */
-/* Description of the entry. */
-dl.lua_table>dd {
-    font-size: 0.95em;
-}
-/* }}} */
-/* >dt {{{ */
-dl.lua_table>dt {
-    font-size: 1em;
-    font-weight: inherit;
-}
-/*  code {{{ */
-dl.lua_table>dt code {
-    background-color: inherit;
-    border-radius: 0;
-    border: none;
-}
-/* }}} */
 /* }}} */
 /* }}} */
 /* figure {{{ */
@@ -368,26 +306,32 @@ main {
 /* decrease max width in sections {{{ */
 main>p                                          {max-width: 80ch}
 main>ul                                         {max-width: calc(80ch - 2em)}
+main>ol                                         {max-width: calc(80ch - 2em)}
 main>dl                                         {max-width: 80ch}
 
 main>section>p                                  {max-width: 79ch}
 main>section>ul                                 {max-width: calc(79ch - 2em)}
+main>section>ol                                 {max-width: calc(79ch - 2em)}
 main>section>dl                                 {max-width: 79ch}
 
 main>section>section>p                          {max-width: 78ch}
 main>section>section>ul                         {max-width: calc(78ch - 2em)}
+main>section>section>ol                         {max-width: calc(78ch - 2em)}
 main>section>section>dl                         {max-width: 78ch}
 
 main>section>section>section>p                  {max-width: 77ch}
 main>section>section>section>ul                 {max-width: calc(77ch - 2em)}
+main>section>section>section>ol                 {max-width: calc(77ch - 2em)}
 main>section>section>section>dl                 {max-width: 77ch}
 
 main>section>section>section>section>p          {max-width: 76ch}
 main>section>section>section>section>ul         {max-width: calc(76ch - 2em)}
+main>section>section>section>section>ol         {max-width: calc(76ch - 2em)}
 main>section>section>section>section>dl         {max-width: 76ch}
 
 main>section>section>section>section>section>p  {max-width: 75ch}
 main>section>section>section>section>section>ul {max-width: calc(75ch - 2em)}
+main>section>section>section>section>section>ol {max-width: calc(75ch - 2em)}
 main>section>section>section>section>section>dl {max-width: 75ch}
 /* }}} */
 /* nav.navbar {{{ */
@@ -466,13 +410,6 @@ p.caption {
     margin-bottom: 0.5ex;
 }
 /* }}} */
-/* p.function_signature {{{ */
-/* Like a subtitle, for showing a function interface. */
-p.function_signature {
-    margin-top: 0.5em;
-    margin-left: 4ch;
-}
-/* }}} */
 /* pre {{{ */
 pre {
     background-color: #EEE;
@@ -489,13 +426,6 @@ pre>code {
     border: none !important;
 }
 /* }}} */
-/* }}} */
-/* r {{{ */
-/* Custom tag. Resets bold/italic. */
-r {
-    font-weight: normal;
-    font-style: normal;
-}
 /* }}} */
 /* samp {{{ */
 /* System/program output. */
@@ -597,6 +527,7 @@ var {
 }
 /* }}} */
 
+/* A box in the bottom-right corner. For the "powered by" crap or a really good ad. */
 div#hostad {
     position: fixed;
     bottom: 0;

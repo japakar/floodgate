@@ -31,7 +31,7 @@ switch ($_SERVER['PATH_INFO']) {
 
  case '/payout':
   if (isset($_GET['c'])) {
-    switch (stripslashes($_GET['c'])) {
+    switch ($_GET['c']) {
      case 'BCH':
      case 'BLK':
      case 'BTC':
@@ -42,9 +42,9 @@ switch ($_SERVER['PATH_INFO']) {
      case 'LTC':
      case 'PPC':
      case 'XPM':
-      if (${'cfg_' . stripslashes($_GET['c']) . '_enabled'}) {
+      if (${'cfg_' . rawurlencode($_GET['c']) . '_enabled'}) {
         http_response_code(200);
-        echo ${'cfg_' . stripslashes($_GET['c']) . '_amount'} . "\n";
+        echo ${'cfg_' . rawurlencode($_GET['c']) . '_amount'} . "\n";
         break;
       }
      default:

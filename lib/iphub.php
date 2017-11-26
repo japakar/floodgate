@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
 // returns true if iphub suggests blocking the address
-function check_iphub($ip) {
+function check_iphub(string $ip) {
   global $cfg_iphub_block_level;
   global $cfg_iphub_key;
   global $cfg_iphub_whitelist;

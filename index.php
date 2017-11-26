@@ -7,11 +7,11 @@
 
   $referrer = null; // The address of the referrer.
   if (isset($_GET['r']))
-    $referrer = htmlspecialchars(stripslashes($_GET['r']));
+    $referrer = $_GET['r'];
 
   $referrer_currency = null; // The currency that the referrer wants to be paid in.
   if (isset($_GET['rc']))
-    $referrer_currency = htmlspecialchars(stripslashes($_GET['rc']));
+    $referrer_currency = $_GET['rc'];
 
   $referred = (isset($referrer) && isset($referrer_currency)); // Whether the user was referred.
 
@@ -33,16 +33,17 @@
  <p>There&#700;s no timers or CAPTCHAs<?php if ($cfg_use_captcha) echo ' (apart from the one on this page)'; ?>; this is one of the leakiest faucets out there!</p>
  <p>(This faucet requires your address to be linked to a <a href="http://faucethub.io/r/10082526">FaucetHUB account</a>)</p>
  <p>(If the payout rates seem low, just remember that you get out just as much as you put in, and this faucet is much less &ldquo;labor-intensive&rdquo; than most.)</p>
- <?php if ($cfg_set_mining) {echo '<p>This faucet <strong>does not</strong> freeze your account.</p>';} ?>
- <aside id="motd"><?php echo $cfg_MOTD; ?></aside>
+ <?php if ($cfg_set_mining) echo '<p>This faucet <strong>does not</strong> freeze your account.</p>'; ?>
+ <?php if (!empty($cfg_MOTD)) echo '<aside id="motd"><div style="min-width:40vw"><b>Announcements</b></div>' . $cfg_MOTD . '</aside>'; ?>
  <div style="padding-left: 1em">
   <form action="verify.php" method="post">
    <?php
      if ($referred) {
-       echo '<input type="hidden" name="r" value="' . $referrer . '"/>';
-       echo '<input type="hidden" name="rc" value="' . $referrer_currency . '"/>';
+       echo '<input type="hidden" name="r" value="' . htmlspecialchars($referrer, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '"/>';
+       echo '<input type="hidden" name="rc" value="' . htmlspecialchars($referrer_currency, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '"/>';
      }
-     if (isset($_GET['rotator'])) echo '<input type="hidden" name="rotator" value="' . htmlspecialchars(stripslashes($_GET['rotator'])) . '"/>';
+     if (isset($_GET['rotator']))
+       echo '<input type="hidden" name="rotator" value="' . htmlspecialchars($_GET['rotator'], ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5) . '"/>';
    ?>
    <?php
      if ($cfg_use_captcha) {
@@ -50,7 +51,7 @@
        embed_captcha();
      }
    ?>
-   <input type="text" name="address" placeholder="address" size="40" style="font-family: monospace"/>
+   <input type="text" name="address" placeholder="address" size="40" style="font-family: monospace"/><br/>
    <select name="currency">
     <?php if ($cfg_BCH_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'BCH')) {echo 'selected="selected" ';} echo 'value="BCH">BCH (~' . ($cfg_BCH_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_BLK_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'BLK')) {echo 'selected="selected" ';} echo 'value="BLK">BLK (~' . ($cfg_BLK_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
@@ -64,13 +65,21 @@
     <?php if ($cfg_XPM_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'XPM')) {echo 'selected="selected" ';} echo 'value="XPM">XPM (~' . ($cfg_XPM_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
    </select>
    <input id="start_claiming" type="submit" value="Start claiming"/>
-   <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options.php'; ?>
+   <div style="max-width:80ch"><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options.php'; ?></div>
   </form>
  </div>
  <p>Referral link: <code><?php echo $cfg_site_url; ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>
- <?php if ($cfg_enable_google_analytics) echo '<p>By the way, this site uses Google&nbsp;Analytics and cookies. It doesn&#700;t really matter, and the information collected is <em>completely</em> anonymous and stripped of any identifying information. Nobody cares anyway; the people who <em>do</em> care about your information don&#700;t tell you that they have it. The information collected here would be akin to glancing at your feet from across the street while holding a censor bar over your face, body, and skin.<br/>Nice shoes, by the way!</p>'; ?>
- <p><!-- Please don't change this referral! It is basically my one line of profit XD --><a href='https://a-ads.com?partner=710774'>Advertise with Anonymous&nbsp;Ads</a> (Best ad network ever!)</p>
+ <?php if ($cfg_enable_google_analytics) echo '<p>This site uses Google&nbsp;Analytics and cookies. It doesn&#700;t really matter, and the information collected is <em>completely</em> anonymous and stripped of any identifying information. Nobody cares anyway; the people who <em>do</em> care about your information don&#700;t tell you that they have it. The information collected here would be akin to glancing at your feet from across the street while holding a censor bar over your face, body, and skin.<br/>Nice shoes, by the way!</p>'; ?>
+ <p><a href='https://a-ads.com?partner=710774'>Advertise with Anonymous&nbsp;Ads</a> (Best ad network ever!)</p>
 </main>
-<footer><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads_q.php'; ?></footer>
+<footer>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads_q.php'; ?>
+<?php
+  if ($cfg_list_faucet) {
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/lib/flist.php';
+    flist_auto();
+  }
+?>
+</footer>
 </body>
 </html>

@@ -25,7 +25,7 @@ if ($cfg_use_captcha) {
   }
 }
 
-$claim_url .= '&key=' . urlencode(md5(htmlspecialchars(stripslashes($_POST['address'])) . ' ' . $cfg_cookie_key));
+$claim_url .= '&key=' . rawurlencode(md5($_POST['address'] . ' ' . $cfg_cookie_key));
 
 if ($cfg_use_shortlink) {
   require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/shortlink.php';
