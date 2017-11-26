@@ -119,6 +119,6 @@
 
   /* Set this to the version of the faucet source you are using. (see http://semver.org)
    * If you change the source, be sure to add "+mod" (modified) to the version! */
-  $cfg__VERSION = '4.2.0+dev';
-  //$cfg__VERSION = '4.2.0+mod.dev';
+  $cfg__VERSION = '4.2.1+dev';
+  //$cfg__VERSION = '4.2.1+mod.dev';
 ?>
