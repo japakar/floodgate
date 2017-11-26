@@ -3,6 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
 header('Cache-Control: 3600', true);
 header('Content-Type: text/plain', true);
+header('Access-Control-Allow-Origin: *', true);
 
 switch ($_SERVER['PATH_INFO']) {
  case '/version':
