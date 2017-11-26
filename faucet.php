@@ -21,7 +21,7 @@
 
   include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options_process.php';
 
-  date_default_timezone_set('UTC');
+  date_default_timezone_set(date_default_timezone_get());
 
   $dryrun = false;
   $errmsg = '';
