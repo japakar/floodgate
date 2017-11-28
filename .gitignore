@@ -1,10 +1,2 @@
 /config.php
 /custom
-
-# These files are just used by me. (The git repository is my actual site)
-/.htaccess
-/403.html
-/blacklist.php
-/face.svg
-/knowledge
-/tx
