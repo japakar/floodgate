@@ -57,6 +57,33 @@ switch ($_SERVER['PATH_INFO']) {
   http_response_code(400);
   break;
 
+ case '/payout_per_minute':
+  if (isset($_GET['c'])) {
+    switch ($_GET['c']) {
+     case 'BCH':
+     case 'BLK':
+     case 'BTC':
+     case 'BTX':
+     case 'DASH':
+     case 'DOGE':
+     case 'ETH':
+     case 'LTC':
+     case 'PPC':
+     case 'XPM':
+      if (${'cfg_' . rawurlencode($_GET['c']) . '_enabled'}) {
+        http_response_code(200);
+        echo ((${'cfg_' . rawurlencode($_GET['c']) . '_amount'} / $cfg_refresh_time) * 60) . "\n";
+        break;
+      }
+     default:
+      http_response_code(400);
+      break;
+    }
+    break;
+  }
+  http_response_code(400);
+  break;
+
  case '/owner':
   http_response_code(200);
   echo $cfg_fh_username . "\n";

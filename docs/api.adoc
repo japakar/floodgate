@@ -42,6 +42,18 @@ Returns the average number of satoshi paid out per claim.
 ====
 
 
+=== `/payout_per_minute?c=<CURRENCY>`
+
+Returns the average number of satoshi paid out per minute.
+Equivalent to `(payout / claim_time) * 60`.
+
+.Getting the average payout amount per minute for a currency
+====
+ - GET `http://faucet.0xc9.net/api.php/payout_per_minute?c=BLK`
+ - GET `http://faucet.0xc9.net/api.php/payout_per_minute?c=DOGE`
+====
+
+
 === `/claim_time`
 
 Returns the minimum number of seconds between claims.
