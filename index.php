@@ -56,8 +56,8 @@
        embed_captcha();
      }
    ?>
-   <input type="text" name="address" placeholder="address" size="40" style="font-family: monospace"/><br/>
-   <select name="currency">
+   <input type="text" name="address" required="required" pattern="[A-Za-z0-9]+" placeholder="address" size="40" style="font-family: monospace"/><br/>
+   <select name="currency" required="required">
     <?php if ($cfg_BCH_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'BCH')) {echo 'selected="selected" ';} echo 'value="BCH">BCH (~' . ($cfg_BCH_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_BLK_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'BLK')) {echo 'selected="selected" ';} echo 'value="BLK">BLK (~' . ($cfg_BLK_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_BTC_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'BTC')) {echo 'selected="selected" ';} echo 'value="BTC">BTC (~' . ($cfg_BTC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
