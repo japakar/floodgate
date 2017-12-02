@@ -17,6 +17,11 @@
 
   if (!isset($_GET['rotator']))
     header('X-Frame-Options: sameorigin', true);
+
+  if ($cfg_list_faucet) {
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/lib/flist.php';
+    flist_auto();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,12 +79,6 @@
 </main>
 <footer>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads_q.php'; ?>
-<?php
-  if ($cfg_list_faucet) {
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/lib/flist.php';
-    flist_auto();
-  }
-?>
 </footer>
 </body>
 </html>
