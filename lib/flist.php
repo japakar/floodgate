@@ -1,15 +1,24 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
+date_default_timezone_set(date_default_timezone_get());
 
-function flist_send() { // hack since byethost doesn't seem to accept my POSTs
+function flist_send() {
   global $cfg_site_url;
-  echo '<iframe src="http://floodgates.byethost18.com/a.php?url=' . rawurlencode($cfg_site_url) . '" style="height:1px;width:1px" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>';
+  $sentfile = $_SERVER['DOCUMENT_ROOT'] . '/_fregistered';
+
+  $iua = !!ignore_user_abort(true);
+  if (file_get_contents('http://floodgates.0xc9.net/a.php?url=' . rawurlencode($cfg_site_url)) === false) {
+    $fp = fopen($sentfile, 'w') or die('Unable to open file! (w)');
+    fwrite($fp, time() - ((6 * 24 * 60 * 60) + (12 * 60 * 60))); // try again in 12 hours
+    fclose($fp);
+  }
+  ignore_user_abort($iua);
 }
 
 function flist_auto() {
-  date_default_timezone_set(date_default_timezone_get());
   $sentfile = $_SERVER['DOCUMENT_ROOT'] . '/_fregistered';
 
+  $iua = !!ignore_user_abort(true);
   if (file_exists($sentfile)) {
     $fp = fopen($sentfile, 'r') or die('Unable to open file! (r)');
     $prev_time = intval(fread($fp, filesize($sentfile)));
@@ -26,5 +35,6 @@ function flist_auto() {
     fclose($fp);
     flist_send();
   }
+  ignore_user_abort($iua);
 }
 ?>
