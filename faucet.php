@@ -42,7 +42,7 @@
 
   if ($cfg_use_captcha || $cfg_use_shortlink) {
     if (isset($_GET['key'])) {
-      if (rawurldecode($_GET['key']) != md5($address . ' ' . $cfg_cookie_key)) {
+      if ($_GET['key'] != md5($address . ' ' . $cfg_cookie_key)) {
         http_response_code(400);
         require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/ban.php';
         ban_user('Invalid key');
@@ -424,7 +424,6 @@
 <html lang="en">
 <head>
 <title><?php echo $cfg_site_name; ?></title>
-<link rel="stylesheet" href="/main.css"/>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
 <?php
   if ($overload) {

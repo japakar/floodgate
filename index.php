@@ -27,13 +27,12 @@
 <html lang="en">
 <head>
  <title><?php echo $cfg_site_name; ?></title>
- <link rel="stylesheet" href="/main.css"/>
  <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
 </head>
 <body>
 <header><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/navbar.php'; ?></header>
 <main>
- <h1><?php echo $cfg_site_name; ?></h1><script>NekoType="black"</script><h1 id=nl><script src="http://webneko.net/n200504.js"></script></h1>
+ <h1><?php echo $cfg_site_name; ?></h1>
  <p>Just enter your address below, select your currency, hit submit, and then leave the page open for tons of satoshi!</p>
  <p>There&#700;s no timers or CAPTCHAs<?php if ($cfg_use_captcha) echo ' (apart from the one on this page)'; ?>; this is one of the leakiest faucets out there!</p>
  <p>(This faucet requires your address to be linked to a <a href="http://faucethub.io/r/10082526">FaucetHUB account</a>)</p>

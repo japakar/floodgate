@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
  <title>NastyHosts Blacklisted You</title>
- <link rel="stylesheet" href="/main.css"/>
  <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
 </head>
 <body>
