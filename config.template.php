@@ -30,7 +30,6 @@
 
   /* Make sure that the faucet is set up under the "PTP" and "Mining" categories on Faucet Hub's
    * faucet manager page, or users could get their accounts frozen for claiming too often! */
-  $cfg_set_mining = true; // Set this to true once your faucet(s) is/are registered under the "PTP" and "Mining" categories on faucethub.
 
   /* Faucet Hub API Key(s)
    * You can set them all to the same key if you want.

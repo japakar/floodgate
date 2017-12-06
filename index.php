@@ -37,7 +37,6 @@
  <p>There&#700;s no timers or CAPTCHAs<?php if ($cfg_use_captcha) echo ' (apart from the one on this page)'; ?>; this is one of the leakiest faucets out there!</p>
  <p>(This faucet requires your address to be linked to a <a href="http://faucethub.io/r/10082526">FaucetHUB account</a>)</p>
  <p>(If the payout rates seem low, just remember that you get out just as much as you put in, and this faucet is much less &ldquo;labor-intensive&rdquo; than most.)</p>
- <?php if ($cfg_set_mining) echo '<p>This faucet <strong>does not</strong> freeze your account.</p>'; ?>
  <?php if (!empty($cfg_MOTD)) echo '<aside id="motd"><div style="min-width:40vw"><b>Announcements</b></div>' . $cfg_MOTD . '</aside>'; ?>
  <div style="padding-left: 1em">
   <form action="verify.php" method="post">
