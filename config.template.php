@@ -2,10 +2,6 @@
   /* A message for people to see on the main page */
   $cfg_MOTD = '<p>This is a brand new floodgate!</p>';
 
-  /* Create a new a-ads ad of size "Adaptive", put the Ad Unit ID here. (They'll say Ad Unit #****** on your dashboard) */
-  /* You ony need one ad, people! */
-  $cfg_aads_id = '701112';
-
   $cfg_refresh_time = 60 * 10; // Payout time in seconds.
   $cfg_real_refresh_time = $cfg_refresh_time; // Refresh time of the claim page.
 
