@@ -76,7 +76,7 @@
       $errmsg = '<p>Invalid currency. Nice try.</p>';
       goto end_payout;
     }
-    $faucethub = new FaucetHub(${'cfg_' . $currency . '_api_key'}, $currency);
+    $faucethub = new FaucetHub(${'cfg_' . $currency . '_api_key'}, $currency, false);
     break;
    default:
     http_response_code(400);
@@ -318,7 +318,7 @@
      case 'LTC':
      case 'PPC':
      case 'XPM':
-      $faucethub_ref = new FaucetHub(${'cfg_' . $referrer_currency . '_api_key'}, $referrer_currency);
+      $faucethub_ref = new FaucetHub(${'cfg_' . $referrer_currency . '_api_key'}, $referrer_currency, false);
       break;
      default:
       http_response_code(400);
