@@ -2,10 +2,6 @@
   /* A message for people to see on the main page */
   $cfg_MOTD = '<p>This is a brand new floodgate!</p>';
 
-  /* Create a new a-ads ad of size "Adaptive", put the Ad Unit ID here. (They'll say Ad Unit #****** on your dashboard) */
-  /* You ony need one ad, people! */
-  $cfg_aads_id = '701112';
-
   $cfg_refresh_time = 60 * 10; // Payout time in seconds.
   $cfg_real_refresh_time = $cfg_refresh_time; // Refresh time of the claim page.
 
@@ -34,7 +30,6 @@
 
   /* Make sure that the faucet is set up under the "PTP" and "Mining" categories on Faucet Hub's
    * faucet manager page, or users could get their accounts frozen for claiming too often! */
-  $cfg_set_mining = true; // Set this to true once your faucet(s) is/are registered under the "PTP" and "Mining" categories on faucethub.
 
   /* Faucet Hub API Key(s)
    * You can set them all to the same key if you want.
@@ -113,12 +108,12 @@
   }
 
   $cfg_fh_username = 'texanarcher'; // Your FaucetHUB username.
-  $cfg_site_name = 'A copy of 0xC9&#700;s Floodgate v4.3.0'; // The faucet name.
+  $cfg_site_name = 'A copy of Sheshire&nbsp;Sat&#700;s Floodgate v4.4.0'; // The faucet name.
   $cfg_site_url = 'http://faucet.0xc9.net'; // The URL of the faucet.
   $cfg_list_faucet = true; // Whether to include the faucet in the big list of floodgates.
 
   /* Set this to the version of the faucet source you are using. (see http://semver.org)
-   * If you change the source, be sure to add "+mod" (modified) to the version! */
-  $cfg__VERSION = '4.3.0';
-  //$cfg__VERSION = '4.3.0+mod';
+   * If you change the source code in _any_ way, be sure to add "+mod" (modified) to the version! */
+  $cfg__VERSION = '4.4.0';
+  //$cfg__VERSION = '4.4.0+mod';
 ?>

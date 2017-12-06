@@ -45,8 +45,7 @@ class FaucetHub
     public function __construct($api_key, $currency = "BTC", $disable_curl = false, $verify_peer = true, $timeout = null) {
         $this->api_key = $api_key;
         $this->currency = $currency;
-        //$this->disable_curl = $disable_curl;
-        $this->disable_curl = true;
+        $this->disable_curl = $disable_curl;
         $this->verify_peer = $verify_peer;
         $this->curl_warning = false;
         $this->setTimeout($timeout);

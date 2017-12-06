@@ -6,10 +6,10 @@ $claim_url = $cfg_site_url . '/faucet.php?';
 $first = true;
 foreach ($_POST as $key => $value) {
   if ($first) {
-    $claim_url .= urlencode($key) . '=' . urlencode(htmlspecialchars(stripslashes($value)));
+    $claim_url .= rawurlencode($key) . '=' . rawurlencode($value);
     $first = false;
   } else {
-    $claim_url .= '&' . urlencode($key) . '=' . urlencode(htmlspecialchars(stripslashes($value)));
+    $claim_url .= '&' . rawurlencode($key) . '=' . rawurlencode($value);
   }
 }
 unset($key);
