@@ -71,6 +71,7 @@
    case 'LTC':
    case 'PPC':
    case 'XPM':
+   case 'POT':
     if (!${'cfg_' . $currency . '_enabled'}) {
       http_response_code(400);
       $errmsg = '<p>Invalid currency. Nice try.</p>';
@@ -287,6 +288,17 @@
         fclose($fp);
       }
     }
+    if ($cfg_POT_enabled) {
+      if (file_exists('referrers/POT/' . rawurlencode($address))) {
+        $fp = fopen('referrers/POT/' . rawurlencode($address), 'r') or die('I/O Error.');
+        $referred = true;
+        $refer_file = true;
+        $referrer_currency = 'POT';
+        $referrer = fread($fp, filesize('referrers/POT/' . rawurlencode($address)));
+        fclose($fp);
+      }
+    }
+  }
   }
 
   if ($referred) {
@@ -318,6 +330,7 @@
      case 'LTC':
      case 'PPC':
      case 'XPM':
+     case 'POT':
       $faucethub_ref = new FaucetHub(${'cfg_' . $referrer_currency . '_api_key'}, $referrer_currency, false);
       break;
      default:
