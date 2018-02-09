@@ -1,4 +1,5 @@
 <?php
+  //POTCoin added by FlareCO -> floodgate.flareco.net
   /* A message for people to see on the main page */
   $cfg_MOTD = '<p>This is a brand new floodgate!</p>';
 
@@ -16,6 +17,7 @@
   $cfg_LTC_enabled  = false;
   $cfg_PPC_enabled  = true;
   $cfg_XPM_enabled  = true;
+  $cfg_POT_enabled  = true;
 
   $cfg_BCH_amount  = null;
   $cfg_BLK_amount  = intval((200 / 60) * $cfg_refresh_time);
@@ -27,6 +29,7 @@
   $cfg_LTC_amount  = null;
   $cfg_PPC_amount  = intval((55 / 60) * $cfg_refresh_time);
   $cfg_XPM_amount  = intval((215 / 60) * $cfg_refresh_time);
+  $cfg_POT_amount  = intval((215 / 60) * $cfg_refresh_time);
 
   /* Make sure that the faucet is set up under the "PTP" and "Mining" categories on Faucet Hub's
    * faucet manager page, or users could get their accounts frozen for claiming too often! */
@@ -44,6 +47,7 @@
   $cfg_LTC_api_key  = null;
   $cfg_PPC_api_key  = 'XXXREDACTEDXXXXXXXXX75a6a7c815ec';
   $cfg_XPM_api_key  = 'XXXREDACTEDXXXXXXXXX75a6a7c815ec';
+  $cfg_POT_api_key  = 'XXXREDACTEDXXXXXXXXX75a6a7c815ec';
 
   /* Set this to true and the faucet will automatically ban some botters and abusers by adding `deny from IP_ADDRESS` lines to /.htaccess */
   /* Leave this disabled unless your server uses .htaccess files and you are fine with an automated script modifying it! */
