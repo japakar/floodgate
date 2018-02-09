@@ -66,6 +66,7 @@
     <?php if ($cfg_LTC_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'LTC')) {echo 'selected="selected" ';} echo 'value="LTC">LTC (~' . ($cfg_LTC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_PPC_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'PPC')) {echo 'selected="selected" ';} echo 'value="PPC">PPC (~' . ($cfg_PPC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_XPM_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'XPM')) {echo 'selected="selected" ';} echo 'value="XPM">XPM (~' . ($cfg_XPM_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_POT_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'POT')) {echo 'selected="selected" ';} echo 'value="POT">POT (~' . ($cfg_POT_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
    </select>
    <input id="start_claiming" type="submit" value="Start claiming"/>
    <div style="max-width:80ch"><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options.php'; ?></div>
