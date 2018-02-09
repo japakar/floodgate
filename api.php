@@ -23,6 +23,7 @@ switch ($_SERVER['PATH_INFO']) {
   if ($cfg_LTC_enabled) echo "LTC\n";
   if ($cfg_PPC_enabled) echo "PPC\n";
   if ($cfg_XPM_enabled) echo "XPM\n";
+  if ($cfg_POT_enabled) echo "POT\n";
   break;
 
  case '/claim_time':
@@ -43,6 +44,7 @@ switch ($_SERVER['PATH_INFO']) {
      case 'LTC':
      case 'PPC':
      case 'XPM':
+     case 'POT':
       if (${'cfg_' . rawurlencode($_GET['c']) . '_enabled'}) {
         http_response_code(200);
         echo ${'cfg_' . rawurlencode($_GET['c']) . '_amount'} . "\n";
@@ -69,6 +71,7 @@ switch ($_SERVER['PATH_INFO']) {
      case 'ETH':
      case 'LTC':
      case 'PPC':
+     case 'XPM':
      case 'XPM':
       if (${'cfg_' . rawurlencode($_GET['c']) . '_enabled'}) {
         http_response_code(200);
