@@ -59,6 +59,7 @@
     <?php if ($cfg_DOGE_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'DOGE')) {echo 'selected="selected" ';} echo 'value="DOGE">DOGE (~' . ($cfg_DOGE_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_ETH_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'ETH')) {echo 'selected="selected" ';} echo 'value="ETH">ETH (~' . ($cfg_ETH_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_LTC_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'LTC')) {echo 'selected="selected" ';} echo 'value="LTC">LTC (~' . ($cfg_LTC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_POT_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'POT')) {echo 'selected="selected" ';} echo 'value="POT">POT (~' . ($cfg_POT_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_PPC_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'PPC')) {echo 'selected="selected" ';} echo 'value="PPC">PPC (~' . ($cfg_PPC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_XPM_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'XPM')) {echo 'selected="selected" ';} echo 'value="XPM">XPM (~' . ($cfg_XPM_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
    </select>

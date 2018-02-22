@@ -14,6 +14,7 @@
   $cfg_DOGE_enabled = true;
   $cfg_ETH_enabled  = false;
   $cfg_LTC_enabled  = false;
+  $cfg_POT_enabled  = false;
   $cfg_PPC_enabled  = true;
   $cfg_XPM_enabled  = true;
 
@@ -25,6 +26,7 @@
   $cfg_DOGE_amount = intval((10050 / 60) * $cfg_refresh_time);
   $cfg_ETH_amount  = null;
   $cfg_LTC_amount  = null;
+  $cfg_POT_amount  = null;
   $cfg_PPC_amount  = intval((55 / 60) * $cfg_refresh_time);
   $cfg_XPM_amount  = intval((215 / 60) * $cfg_refresh_time);
 
@@ -42,6 +44,7 @@
   $cfg_DOGE_api_key = 'XXXREDACTEDXXXXXXXXX7abd256ba6c8';
   $cfg_ETH_api_key  = null;
   $cfg_LTC_api_key  = null;
+  $cfg_POT_api_key  = null;
   $cfg_PPC_api_key  = 'XXXREDACTEDXXXXXXXXX75a6a7c815ec';
   $cfg_XPM_api_key  = 'XXXREDACTEDXXXXXXXXX75a6a7c815ec';
 
