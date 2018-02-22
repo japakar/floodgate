@@ -21,6 +21,7 @@ switch ($_SERVER['PATH_INFO']) {
   if ($cfg_DOGE_enabled) echo "DOGE\n";
   if ($cfg_ETH_enabled) echo "ETH\n";
   if ($cfg_LTC_enabled) echo "LTC\n";
+  if ($cfg_POT_enabled) echo "POT\n";
   if ($cfg_PPC_enabled) echo "PPC\n";
   if ($cfg_XPM_enabled) echo "XPM\n";
   break;
@@ -41,6 +42,7 @@ switch ($_SERVER['PATH_INFO']) {
      case 'DOGE':
      case 'ETH':
      case 'LTC':
+     case 'POT':
      case 'PPC':
      case 'XPM':
       if (${'cfg_' . rawurlencode($_GET['c']) . '_enabled'}) {
@@ -68,6 +70,7 @@ switch ($_SERVER['PATH_INFO']) {
      case 'DOGE':
      case 'ETH':
      case 'LTC':
+     case 'POT':
      case 'PPC':
      case 'XPM':
       if (${'cfg_' . rawurlencode($_GET['c']) . '_enabled'}) {

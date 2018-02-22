@@ -69,6 +69,7 @@
    case 'DOGE':
    case 'ETH':
    case 'LTC':
+   case 'POT':
    case 'PPC':
    case 'XPM':
     if (!${'cfg_' . $currency . '_enabled'}) {
@@ -267,6 +268,16 @@
         fclose($fp);
       }
     }
+    if ($cfg_POT_enabled) {
+      if (file_exists('referrers/POT/' . rawurlencode($address))) {
+        $fp = fopen('referrers/POT/' . rawurlencode($address), 'r') or die('I/O Error.');
+        $referred = true;
+        $refer_file = true;
+        $referrer_currency = 'POT';
+        $referrer = fread($fp, filesize('referrers/POT/' . rawurlencode($address)));
+        fclose($fp);
+      }
+    }
     if ($cfg_PPC_enabled) {
       if (file_exists('referrers/PPC/' . rawurlencode($address))) {
         $fp = fopen('referrers/PPC/' . rawurlencode($address), 'r') or die('I/O Error.');
@@ -316,6 +327,7 @@
      case 'DOGE':
      case 'ETH':
      case 'LTC':
+     case 'POT':
      case 'PPC':
      case 'XPM':
       $faucethub_ref = new FaucetHub(${'cfg_' . $referrer_currency . '_api_key'}, $referrer_currency, false);
