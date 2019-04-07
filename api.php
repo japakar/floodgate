@@ -18,12 +18,16 @@ switch ($_SERVER['PATH_INFO']) {
   if ($cfg_BTC_enabled) echo "BTC\n";
   if ($cfg_BTX_enabled) echo "BTX\n";
   if ($cfg_DASH_enabled) echo "DASH\n";
+  if ($cfg_DGB_enabled) echo "DGB\n";
   if ($cfg_DOGE_enabled) echo "DOGE\n";
   if ($cfg_ETH_enabled) echo "ETH\n";
+  if ($cfg_HORA_enabled) echo "HORA\n";
   if ($cfg_LTC_enabled) echo "LTC\n";
   if ($cfg_POT_enabled) echo "POT\n";
   if ($cfg_PPC_enabled) echo "PPC\n";
+  if ($cfg_XMR_enabled) echo "XMR\n";
   if ($cfg_XPM_enabled) echo "XPM\n";
+  if ($cfg_ZEC_enabled) echo "ZEC\n";
   break;
 
  case '/claim_time':
@@ -39,12 +43,16 @@ switch ($_SERVER['PATH_INFO']) {
      case 'BTC':
      case 'BTX':
      case 'DASH':
+	 case 'DGB':
      case 'DOGE':
      case 'ETH':
+	 case 'HORA':
      case 'LTC':
      case 'POT':
      case 'PPC':
+	 case 'XMR':
      case 'XPM':
+     case 'ZEC':
       if (${'cfg_' . rawurlencode($_GET['c']) . '_enabled'}) {
         http_response_code(200);
         echo ${'cfg_' . rawurlencode($_GET['c']) . '_amount'} . "\n";
@@ -67,12 +75,16 @@ switch ($_SERVER['PATH_INFO']) {
      case 'BTC':
      case 'BTX':
      case 'DASH':
+	 case 'DGB':
      case 'DOGE':
      case 'ETH':
+	 case 'HORA':
      case 'LTC':
      case 'POT':
      case 'PPC':
+	 case 'XMR':
      case 'XPM':
+     case 'ZEC':
       if (${'cfg_' . rawurlencode($_GET['c']) . '_enabled'}) {
         http_response_code(200);
         echo ((${'cfg_' . rawurlencode($_GET['c']) . '_amount'} / $cfg_refresh_time) * 60) . "\n";

@@ -46,7 +46,7 @@
         http_response_code(400);
         require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/ban.php';
         ban_user('Invalid key');
-        die('Congragulations, you are banned!');
+        die('Cheating detected, Start over from main page!');
       }
     } else {
       http_response_code(400);
@@ -66,12 +66,16 @@
    case 'BTC':
    case 'BTX':
    case 'DASH':
+   case 'DGB':
    case 'DOGE':
    case 'ETH':
+   case 'HORA':
    case 'LTC':
    case 'POT':
    case 'PPC':
+   case 'XMR':
    case 'XPM':
+   case 'ZEC':
     if (!${'cfg_' . $currency . '_enabled'}) {
       http_response_code(400);
       $errmsg = '<p>Invalid currency. Nice try.</p>';
@@ -238,6 +242,16 @@
         fclose($fp);
       }
     }
+	    if ($cfg_DGB_enabled) {
+      if (file_exists('referrers/DGB/' . rawurlencode($address))) {
+        $fp = fopen('referrers/DGB/' . rawurlencode($address), 'r') or die('I/O Error.');
+        $referred = true;
+        $refer_file = true;
+        $referrer_currency = 'DGB';
+        $referrer = fread($fp, filesize('referrers/DGB/' . rawurlencode($address)));
+        fclose($fp);
+      }
+    }
     if ($cfg_DOGE_enabled) {
       if (file_exists('referrers/DOGE/' . rawurlencode($address))) {
         $fp = fopen('referrers/DOGE/' . rawurlencode($address), 'r') or die('I/O Error.');
@@ -255,6 +269,16 @@
         $refer_file = true;
         $referrer_currency = 'ETH';
         $referrer = fread($fp, filesize('referrers/ETH/' . rawurlencode($address)));
+        fclose($fp);
+      }
+	}
+    if ($cfg_HORA_enabled) {
+      if (file_exists('referrers/HORA/' . rawurlencode($address))) {
+        $fp = fopen('referrers/HORA/' . rawurlencode($address), 'r') or die('I/O Error.');
+        $referred = true;
+        $refer_file = true;
+        $referrer_currency = 'HORA';
+        $referrer = fread($fp, filesize('referrers/HORA/' . rawurlencode($address)));
         fclose($fp);
       }
     }
@@ -288,6 +312,16 @@
         fclose($fp);
       }
     }
+	    if ($cfg_XMR_enabled) {
+      if (file_exists('referrers/XMR/' . rawurlencode($address))) {
+        $fp = fopen('referrers/XMR/' . rawurlencode($address), 'r') or die('I/O Error.');
+        $referred = true;
+        $refer_file = true;
+        $referrer_currency = 'XMR';
+        $referrer = fread($fp, filesize('referrers/XMR/' . rawurlencode($address)));
+        fclose($fp);
+      }
+    }
     if ($cfg_XPM_enabled) {
       if (file_exists('referrers/XPM/' . rawurlencode($address))) {
         $fp = fopen('referrers/XPM/' . rawurlencode($address), 'r') or die('I/O Error.');
@@ -295,6 +329,16 @@
         $refer_file = true;
         $referrer_currency = 'XPM';
         $referrer = fread($fp, filesize('referrers/XPM/' . rawurlencode($address)));
+        fclose($fp);
+      }
+    }
+    if ($cfg_ZEC_enabled) {
+      if (file_exists('referrers/ZEC/' . rawurlencode($address))) {
+        $fp = fopen('referrers/ZEC/' . rawurlencode($address), 'r') or die('I/O Error.');
+        $referred = true;
+        $refer_file = true;
+        $referrer_currency = 'ZEC';
+        $referrer = fread($fp, filesize('referrers/ZEC/' . rawurlencode($address)));
         fclose($fp);
       }
     }
@@ -324,12 +368,16 @@
      case 'BTC':
      case 'BTX':
      case 'DASH':
+	 case 'DGB':
      case 'DOGE':
      case 'ETH':
+	 case 'HORA':
      case 'LTC':
      case 'POT':
      case 'PPC':
+	 case 'XMR':
      case 'XPM':
+     case 'ZEC':
       $faucethub_ref = new FaucetHub(${'cfg_' . $referrer_currency . '_api_key'}, $referrer_currency, false);
       break;
      default:
@@ -435,6 +483,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<link rel="stylesheet" type="text/css" href="website.css">
+
 <title><?php echo $cfg_site_name; ?></title>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
 <?php
@@ -454,10 +505,51 @@
     }
   }
 ?>
-</head>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-radius: 25px;
+}
+</style>
+
+</head> 
+            
 <body>
-<header><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/navbar.php'; ?></header>
-<main>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/bannernavbar.php';?>
+
+
+
+<div class="row">
+  <div class="column side">
+<br>
+    Put ads here!
+<br>
+	<center>
+
+
+	</center>
+  </div>
+  
+  
+  
+  
+  <div class="column middle">
+<center><table width="99%" bgcolor="#F2F3F4"></center>
+  <tr>
+    <td><center><h2>Welcome</h2></center>
 <h1><?php echo $cfg_site_name; ?></h1>
 <?php
   if ($dryrun) {
@@ -557,8 +649,44 @@
 <hr/>
 <p><strong>Do not bookmark this page!</strong> Use <a href="<?php echo $cfg_site_url; ?>"><?php echo htmlspecialchars($cfg_site_url, ENT_QUOTES|ENT_SUBSTITUTE|ENT_DISALLOWED|ENT_HTML5); ?></a> instead. (If the claim URL changes and you visit this page directly, you might be mistaken for a bot and banned.)</p>
 <hr/>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/iframetraffic.php'; ?>
-</main>
-<footer><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads.php'; ?></footer>
+
+
+</td>
+  </tr>
+</table>  
+
+
+<center><table width="99%" bgcolor="#F2F3F4"></center>
+  <tr>
+    <td><center><p><b><h2>Latest News!</h2></b></p></center>
+<center>
+
+<br>
+</center>
+</td>
+  </tr>
+</table>
+
+
+  <br>
+  </div>
+  
+  
+  
+  <div class="column side">
+  
+	<center>
+    Put ads here!
+<br>
+	</center>
+  </div>
+</div>
+
+
+<br>
+<center>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/ads/copyright.php';?>
+</center>
+
 </body>
 </html>

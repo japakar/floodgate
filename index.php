@@ -21,13 +21,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" type="text/css" href="/website.css">
+
  <title><?php echo $cfg_site_name; ?></title>
  <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
-</head>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-radius: 25px;
+}
+</style>
+
+</head> 
+            
 <body>
-<header><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/navbar.php'; ?></header>
-<main>
- <h1><?php echo $cfg_site_name; ?></h1>
+
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/bannernavbar.php';?>
+
+
+
+<div class="row">
+  <div class="column side">
+<center>
+<p><b>Recommended by me!</b></p>
+<br>
+
+</center>
+  </div>
+  
+  
+  
+  
+  <div class="column middle">
+<center><table width="99%" bgcolor="#F2F3F4"></center>
+  <tr>
+    <td><center><h2>Welcome</h2></center>
+	<h1><?php echo $cfg_site_name; ?></h1>
  <p>Just enter your address below, select your currency, hit submit, and then leave the page open for tons of satoshi!</p>
  <p>There&#700;s no timers or CAPTCHAs<?php if ($cfg_use_captcha) echo ' (apart from the one on this page)'; ?>; this is one of the leakiest faucets out there!</p>
  <p>(This faucet requires your address to be linked to a <a href="http://faucethub.io/r/10082526">FaucetHUB account</a>)</p>
@@ -56,12 +86,16 @@
     <?php if ($cfg_BTC_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'BTC')) {echo 'selected="selected" ';} echo 'value="BTC">BTC (~' . ($cfg_BTC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_BTX_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'BTX')) {echo 'selected="selected" ';} echo 'value="BTX">BTX (~' . ($cfg_BTX_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_DASH_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'DASH')) {echo 'selected="selected" ';} echo 'value="DASH">DASH (~' . ($cfg_DASH_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
-    <?php if ($cfg_DOGE_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'DOGE')) {echo 'selected="selected" ';} echo 'value="DOGE">DOGE (~' . ($cfg_DOGE_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+    <?php if ($cfg_DGB_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'DGB')) {echo 'selected="selected" ';} echo 'value="DGB">DGB (~' . ($cfg_DGB_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+	<?php if ($cfg_DOGE_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'DOGE')) {echo 'selected="selected" ';} echo 'value="DOGE">DOGE (~' . ($cfg_DOGE_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_ETH_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'ETH')) {echo 'selected="selected" ';} echo 'value="ETH">ETH (~' . ($cfg_ETH_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+	<?php if ($cfg_HORA_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'HORA')) {echo 'selected="selected" ';} echo 'value="HORA">HORA (~' . ($cfg_HORA_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_LTC_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'LTC')) {echo 'selected="selected" ';} echo 'value="LTC">LTC (~' . ($cfg_LTC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_POT_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'POT')) {echo 'selected="selected" ';} echo 'value="POT">POT (~' . ($cfg_POT_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_PPC_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'PPC')) {echo 'selected="selected" ';} echo 'value="PPC">PPC (~' . ($cfg_PPC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+	<?php if ($cfg_XMR_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'XMR')) {echo 'selected="selected" ';} echo 'value="XMR">XMR (~' . ($cfg_XMR_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
     <?php if ($cfg_XPM_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'XPM')) {echo 'selected="selected" ';} echo 'value="XPM">XPM (~' . ($cfg_XPM_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
+	<?php if ($cfg_ZEC_enabled) {echo '<option '; if (isset($referrer_currency) && ($referrer_currency == 'ZEC')) {echo 'selected="selected" ';} echo 'value="ZEC">ZEC (~' . ($cfg_ZEC_amount) . ' every ' . ($cfg_refresh_time / 60) . ' minutes)</option>';} ?>
    </select>
    <input id="start_claiming" type="submit" value="Start claiming"/>
    <div style="max-width:80ch"><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/claim_options.php'; ?></div>
@@ -69,9 +103,42 @@
  </div>
  <p>Referral link: <code><?php echo htmlspecialchars($cfg_site_url, ENT_QUOTES|ENT_SUBSTITUTE|ENT|DISALLOWED|ENT_HTML5); ?>?r=<var>YOUR_ADDRESS</var>&amp;rc=<var>CURRENCY</var></code> (rotator owners, please append <code>&amp;rotator=YOUR_ROTATOR_NAME</code> to the URL)</p>
  <?php if ($cfg_enable_google_analytics) echo '<p>This site uses Google&nbsp;Analytics and cookies. It doesn&#700;t really matter, and the information collected is <em>completely</em> anonymous and stripped of any identifying information. Nobody cares anyway; the people who <em>do</em> care about your information don&#700;t tell you that they have it. The information collected here would be akin to glancing at your feet from across the street while holding a censor bar over your face, body, and skin.<br/>Nice shoes, by the way!</p>'; ?>
-</main>
-<footer>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads_q.php'; ?>
-</footer>
+</td>
+  </tr>
+</table>  
+
+
+<center><table width="99%" bgcolor="#F2F3F4"></center>
+  <tr>
+    <td><center><p><b><h2>Latest News!</h2></b></p></center>
+
+</td>
+  </tr>
+
+</table>
+
+  </div>
+  
+  
+  
+  <div class="column side">
+  
+<center>
+<p><b>Recommended by me!</b></p>
+<br>
+
+
+</center>
+  </div>
+</div>
+
+
+
+<center>
+
+<br><br>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/ads/copyright.php';?>
+</center>
+
 </body>
 </html>

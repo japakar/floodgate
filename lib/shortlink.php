@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 function shortlink_create(string $longurl) {
   global $cfg_eliwin_key;
 
-  $result = @json_decode(file_get_contents('https://elibtc.win/api?api=' . $cfg_eliwin_key . '&url=' . urlencode($longurl)), true);
+  $result = @json_decode(file_get_contents('http://btc.ms/api/?api=' . $cfg_eliwin_key . '&url=' . urlencode($longurl)), true);
 
   if($result['status'] === 'error')
     die($result['message']);
@@ -13,8 +13,9 @@ function shortlink_create(string $longurl) {
     return $result['shortenedUrl'];
 }
 
-/* Alternate version using 1ink.cc (http://1ink.cc/?ref=16969)
- * Editing it should be trivial, just delete the eliwin version above and uncomment this one.
+/* Other shortlink options
+ * http://shortlinks.japakar.com
+ * http://btc.ms/ref/japakar
  * Be sure to change the file_get_contents URL to your account details if you want to get paid! */
 
 /*

@@ -6,7 +6,7 @@
  <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
 </head>
 <body>
-<header><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/navbar.php'; ?></header>
+<header></header>
 <main>
  <h1>IPHub Blacklisted You</h1>
  <p>Sorry, but your IP address, <code><?php echo user_ip(); ?></code> is flagged by <a href="https://iphub.info">IPHub</a>.</p>
@@ -24,6 +24,6 @@
   echo file_get_contents('http://v2.api.iphub.info/ip/' . user_ip(), false, $context);
  ?></code></pre>
 </main>
-<footer><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads_q.php'; ?></footer>
+<footer></footer>
 </body>
 </html>

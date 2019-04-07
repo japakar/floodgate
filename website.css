@@ -1,0 +1,496 @@
+/* Put "font-size" in ":root", everything else is relative. */
+
+/* :root {{{ */
+:root {
+    background-attachment: scroll;
+    background-color: #e5f1ff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Linux Biolinum, Linux Biolinum O, FreeSans, sans-serif;
+    font-feature-settings: "expt", "falt", "fina", "init", "isol", "jalt", "medi";
+    font-kerning: auto;
+    font-language-override: normal;
+    font-synthesis: weight style;
+    font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+}
+
+@media all and (min-resolution: 90dpi) {
+    :root {
+        font-family: Linux Libertine, Linux Libertine O, FreeSerif, serif;
+    }
+}
+/* a[title] {{{ */
+a[title] {
+    background-color: lightgreen;
+}
+/* }}} */
+/* article {{{ */
+article {
+    page-break-inside: avoid;
+}
+/* }}} */
+/* aside {{{ */
+aside {
+    border: groove;
+    clear: right;
+    float: right;
+    margin-bottom: 1ex;
+    margin-left: 1ex;
+    margin-right: 0;
+    margin-top: 1ex;
+}
+@media all and (min-width: 80ex) {
+    aside {
+        max-width: 50%;
+    }
+}
+/* }}} */
+/* blockquote {{{ */
+blockquote {
+    border-left: solid grey 0.3ch;
+    color: #333333;
+    padding-left: 1ex;
+    margin-left: 1.5em;
+}
+/* >p {{{ */
+blockquote>p {
+    max-width: calc(80ch - (1.5em + 1ex + 0.3ch));
+    padding-left: 0;
+}
+/* }}} */
+/* }}} */
+/* body {{{ */
+body {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+/* }}} */
+/* canvas {{{ */
+canvas {
+    image-rendering: optimizespeed;
+}
+/* }}} */
+/* code {{{ */
+code {
+    background-color: #E6E6E6;
+    border-radius: 0.5ch;
+    border: solid 0.2ch #DDD;
+    font-family: monospace; /* TODO */
+}
+/*  var {{{ */
+code var {
+    font-family: inherit;
+    font-style: italic;
+}
+/* }}} */
+/* }}} */
+/* (h1,h2,h3,h4,h5,h6) code {{{ */
+/* Ugh. Is there a better way? */
+h1 code,h2 code,h3 code,h4 code,h5 code,h6 code {
+    background-color: inherit;
+    border: none;
+}
+/* }}} */
+/* div.tab {{{ */
+div.tab {
+    display: none;
+}
+/* }}} */
+/* div.tab:target {{{ */
+div.tab:target {
+    display: block !important;
+}
+/* }}} */
+/* dl {{{ */
+/* >dd {{{ */
+dl>dd {
+    font-size: 0.95em;
+    hyphens: auto;
+    text-align: justify;
+}
+/* }}} */
+/* >dt {{{ */
+dl>dt {
+    font-size: 1em;
+    font-weight: bolder;
+    hyphens: auto;
+    text-align: justify;
+}
+/* }}} */
+/* }}} */
+/* figure {{{ */
+figure {
+    border: groove;
+    clear: right;
+    float: right;
+    margin-bottom: 1ex;
+    margin-top: 1ex;
+}
+/* >figcaption {{{ */
+figure>figcaption {
+    border-top: thin solid;
+    display: block;
+    font-size: 0.95em;
+    padding-bottom: 0.5ex;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5ex;
+}
+/* }}} */
+/* img {{{ */
+img {
+    image-rendering: optimizespeed;
+}
+/* }}} */
+/* kbd {{{ */
+/* A <kbd> element represents user input. */
+kbd {
+    font-family: monospace; /* TODO */
+}
+/*  kbd {{{ */
+/* When a <kbd> element is nested inside another <kbd> element, it
+ * represents an actual key or other single unit of input as appropriate
+ * for the input mechanism. */
+kbd kbd {
+}
+/* }}} */
+/*  samp {{{ */
+/* When a <kbd> element contains a <samp> element, it represnts input
+ * based on system output. */
+kbd samp {
+    /* not sure how to use this */
+}
+/* }}} */
+/* }}} */
+/* li {{{ */
+/* An item in a list. */
+li {
+    hyphens: auto;
+    text-align: justify;
+}
+/* }}} */
+/* main {{{ */
+main {
+    background-color: #e5f1ff;
+    flex: 1 0 auto;
+    margin-bottom: 0;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 0;
+    padding: 0;
+}
+/* }}} */
+/* decrease max width in sections {{{ */
+main>p                                          {max-width: 80ch}
+main>ul                                         {max-width: calc(80ch - 2em)}
+main>ol                                         {max-width: calc(80ch - 2em)}
+main>dl                                         {max-width: 80ch}
+
+main>section>p                                  {max-width: 79ch}
+main>section>ul                                 {max-width: calc(79ch - 2em)}
+main>section>ol                                 {max-width: calc(79ch - 2em)}
+main>section>dl                                 {max-width: 79ch}
+
+main>section>section>p                          {max-width: 78ch}
+main>section>section>ul                         {max-width: calc(78ch - 2em)}
+main>section>section>ol                         {max-width: calc(78ch - 2em)}
+main>section>section>dl                         {max-width: 78ch}
+
+main>section>section>section>p                  {max-width: 77ch}
+main>section>section>section>ul                 {max-width: calc(77ch - 2em)}
+main>section>section>section>ol                 {max-width: calc(77ch - 2em)}
+main>section>section>section>dl                 {max-width: 77ch}
+
+main>section>section>section>section>p          {max-width: 76ch}
+main>section>section>section>section>ul         {max-width: calc(76ch - 2em)}
+main>section>section>section>section>ol         {max-width: calc(76ch - 2em)}
+main>section>section>section>section>dl         {max-width: 76ch}
+
+main>section>section>section>section>section>p  {max-width: 75ch}
+main>section>section>section>section>section>ul {max-width: calc(75ch - 2em)}
+main>section>section>section>section>section>ol {max-width: calc(75ch - 2em)}
+main>section>section>section>section>section>dl {max-width: 75ch}
+/* }}} */
+
+/* p.caption {{{ */
+p.caption {
+    margin-bottom: 0.5ex;
+}
+/* }}} */
+/* pre {{{ */
+pre {
+    background-color: #e5f1ff;
+    border-radius: 0.5ch;
+    border: solid 0.2ch #DDD;
+    font-family: monospace; /* TODO */
+    overflow-x: auto;
+    padding: 0.5ex;
+}
+/* >code {{{ */
+pre>code {
+    background-color: inherit !important;
+    border-radius: 0 0 0 0 !important;
+    border: none !important;
+}
+/* }}} */
+/* }}} */
+/* samp {{{ */
+/* System/program output. */
+samp {
+    font-family: monospace; /* TODO */
+}
+/* }}} */
+/* section {{{ */
+section {
+    margin-left: 1ch;
+    page-break-inside: avoid;
+}
+/* }}} */
+/* span.currency {{{ */
+span.currency {
+    text-transform: lowercase;
+    font-variant-caps: small-caps;
+}
+/* TODO: add a javascript thing that replaces known currency codes with their symbols? */
+/* }}} */
+/* span.footnote {{{ */
+span.footnote {
+    font-size: 0.83em;
+    vertical-align: super;
+}
+/* }}} */
+/* span.math {{{ */
+/* Similar to LaTeX's math mode, changes the font and stuff. */
+span.math {
+    font-variant-numeric: lining-nums;
+}
+
+/* A mathmatical variable. */
+span.math var {
+    font-family: inherit !important;
+}
+span.math var::before {content: '(';}
+span.math var::after {content: ')';}
+/* }}} */
+/* .oldstylenums {{{ */
+.oldstylenums {
+    font-variant-numeric: oldstyle-nums;
+}
+/* }}} */
+/* table.generic {{{ */
+table.generic {
+    border-collapse: collapse;
+    border: solid 1px;
+}
+/*  thead {{{ */
+table.generic thead {
+    background-color: #E6E6E6;
+    border-bottom: solid 2px;
+}
+/* }}} */
+/*  tbody {{{ */
+table.generic tbody {
+    background-color: #E6E6E6;
+}
+/*  tr:nth-child(even) {{{ */
+table.generic tbody tr:nth-child(even) {
+    background-color: #E6E6E6;
+}
+/* }}} */
+/* }}} */
+/*  tr {{{ */
+table.generic tr {
+    border: solid 1px;
+    transition: background-color 0.5s;
+}
+/* }}} */
+/*  tr:hover {{{ */
+table.generic tr:hover {
+    background-color: #FFFFFF !important;
+}
+/* }}} */
+/*  td {{{ */
+table.generic td {
+    border: solid 1px;
+    padding: 0.5ch;
+}
+/* }}} */
+/*  th {{{ */
+table.generic th {
+    border: solid 1px;
+}
+/* }}} */
+/* }}} */
+/* ul {{{ */
+ul {
+    padding-left: 2em;
+}
+/* }}} */
+/* var {{{ */
+/* A variable in a mathematic/programming context. */
+var {
+    font-family: monospace; /* TODO */
+    font-style: italic;
+}
+/* }}} */
+
+/* A box in the bottom-right corner. For the "powered by" crap or a really good ad. */
+
+div#hostad {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    opacity: 0.8;
+    background-color: #FFFFFF;
+    border-radius: 1vw 0 0 0;
+    border-top: solid;
+    border-left: solid;
+}
+body {
+    background-color: #e5f1ff;
+}
+
+h1 {
+    color: black;
+    margin-left: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+    background-color: #f2f4f4;
+    padding: 1px;
+    text-align: center;
+	border-radius: 50px 50px 0px 0px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    background-color: #f2f4f4;
+    border-radius: 0px 0px 50px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0.3ch;
+}
+
+/* Style the topnav links */
+.topnav a {
+    background-color: #0f6d18;
+    border-radius: 0.5ch 0.5ch 0.5ch 0.5ch;
+    color: #EEE;
+    margin: 0.2ch;
+    min-width: 3ch;
+    padding: 0.4ch;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s, margin-top 0.3s, margin-bottom 0.3s, margin-left 0.3s, margin-right 0.3s, padding-top 0.3s, padding-bottom 0.3s, padding-left 0.3s, padding-right 0.3s;
+    vertical-align: middle;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #FFF;
+    color: #222;
+    margin: 0;
+    padding: 0.4ch;
+    text-decoration: none;
+}
+/* Change color on active */
+.topnav a:active {
+    background-color: #222;
+    color: #FFF;
+}
+
+
+/* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 4px;
+}
+
+/* Left and right column */
+.column.side {
+    width: 20%;
+	background-color: #E5F1FF;
+}
+
+/* Middle column */
+.column.middle {
+    width: 60%;
+	background-color: #E5F1FF;
+	border-radius: 0px 0px 50px 50px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .column.side, .column.middle {
+        width: 100%;
+    }
+}
+
+/* Style the footer */
+.footer1 {
+    background-color: #BFC9CA;
+    padding: 10px;
+    text-align: center;
+	border-radius: 50px 50px 50px 50px;
+}
+
+/* Style the footer 2 */
+.footer2 {
+    background-color: #BFC9CA;
+    padding: 10px;
+    text-align: center;
+	border-radius: 50px 50px 50px 50px;
+}
+
+/* Style the footer 3 */
+.footer3 {
+    background-color: #BFC9CA;
+    padding: 10px;
+    text-align: center;
+	border-radius: 0px 0px 0px 0px;
+}
+
+/* Style the footer 4 */
+.footer4 {
+    background-color: #BFC9CA;
+    padding: 10px;
+    text-align: center;
+	border-radius: 0px 0px 0px 0px;
+}
+
+/* Style the footer 5 */
+.footer5 {
+    background-color: #BFC9CA;
+    padding: 1px;
+    text-align: center;
+	border-radius: 0px 0px 0px 0px;
+}
+
+/* Style the footer9 */
+.footer9 {
+    background-color: #e5f1ff;
+    padding: 1px;
+    text-align: center;
+	border-radius: 0px 0px 5px 5px;
+}

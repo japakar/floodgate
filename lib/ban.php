@@ -8,7 +8,7 @@ function ban_user(string $reason) {
     $ip = user_ip();
     if (!$ip) die('Error detecting IP.');
 
-    $tmp = ignore_user_abort(true); // no idea if necessary, better safe than sorry
+    $tmp = ignore_user_abort(true); 
 
     if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/.htaccess'))
       $fp = fopen($_SERVER['DOCUMENT_ROOT'] . '/.htaccess', 'w') or die('Error.');
@@ -23,5 +23,5 @@ function ban_user(string $reason) {
   }
 }
 
-/* TODO: unban_ip(string ip) */
+
 ?>

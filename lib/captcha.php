@@ -18,7 +18,7 @@ function verify_captcha() {
   $post_data = [
     'secret' => $cfg_coinhive_captcha_secret,
     'token' => $_POST['coinhive-captcha-token'],
-    'hashes' => 256
+    'hashes' => 512
   ];
 
   $post_context = stream_context_create([

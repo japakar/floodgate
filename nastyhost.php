@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
  <title>NastyHosts Blacklisted You</title>
- <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
+ <?php include $_SERVER['DOCUMENT_ROOT'] . 'custom/head.php'; ?>
 </head>
 <body>
-<header><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/navbar.php'; ?></header>
+<header></header>
 <main>
  <h1>NastyHosts Blacklisted You</h1>
  <p>Sorry, but your IP address, <code><?php echo user_ip(); ?></code> is flagged by <a href="http://nastyhosts.com">NastyHosts</a>.</p>
@@ -15,6 +15,6 @@
  <p>For reference, this is what NastyHosts has to say about you:</p>
  <pre><code><?php echo file_get_contents('http://v1.nastyhosts.com/' . user_ip()); ?></code></pre>
 </main>
-<footer><?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/ads_q.php'; ?></footer>
+<footer></footer>
 </body>
 </html>
