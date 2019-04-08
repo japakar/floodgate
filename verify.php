@@ -22,6 +22,8 @@ if ($cfg_use_captcha) {
   if (!verify_captcha()) {
     http_response_code(400);
     die('Failed to verify CAPTCHA.');
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/shortlink.php';
+	
   }
 }
 
