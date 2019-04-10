@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Refresh" content="13; url=/faucet.php" />
+<meta http-equiv="Refresh" content="13; url=/verify.php" />
 
  <title>Faucet Overloaded</title>
  <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
