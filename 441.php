@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Refresh" content="13; url=/verify.php" />
+<meta http-equiv="Refresh" content="28; url=/verify.php" />
 
  <title>Faucet Overloaded</title>
  <?php include $_SERVER['DOCUMENT_ROOT'] . '/custom/head.php'; ?>
@@ -38,7 +38,7 @@ table, th, td {
   <tr>
     <td><center><h2>Welcome</h2></center>
 	 <h1>Faucet Overloaded</h1>
- <p>This page will refresh in 15 seconds to restart the auto faucet.</p>
+ <p>This page will refresh in 30 seconds to restart the auto faucet.</p>
  <h2>Why?</h2>
  <p>According to FaucetHUB:</p>
  <blockquote>
