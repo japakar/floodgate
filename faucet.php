@@ -73,6 +73,7 @@
    case 'LTC':
    case 'POT':
    case 'PPC':
+   case 'TRX':
    case 'XMR':
    case 'XPM':
    case 'ZEC':
@@ -311,6 +312,16 @@
         $referrer = fread($fp, filesize('referrers/PPC/' . rawurlencode($address)));
         fclose($fp);
       }
+	}
+	    if ($cfg_TRX_enabled) {
+      if (file_exists('referrers/TRX/' . rawurlencode($address))) {
+        $fp = fopen('referrers/TRX/' . rawurlencode($address), 'r') or die('I/O Error.');
+        $referred = true;
+        $refer_file = true;
+        $referrer_currency = 'TRX';
+        $referrer = fread($fp, filesize('referrers/TRX/' . rawurlencode($address)));
+        fclose($fp);
+      }
     }
 	    if ($cfg_XMR_enabled) {
       if (file_exists('referrers/XMR/' . rawurlencode($address))) {
@@ -375,6 +386,7 @@
      case 'LTC':
      case 'POT':
      case 'PPC':
+	 case 'TRX':
 	 case 'XMR':
      case 'XPM':
      case 'ZEC':

@@ -25,6 +25,7 @@ switch ($_SERVER['PATH_INFO']) {
   if ($cfg_LTC_enabled) echo "LTC\n";
   if ($cfg_POT_enabled) echo "POT\n";
   if ($cfg_PPC_enabled) echo "PPC\n";
+  if ($cfg_TRX_enabled) echo "TRX\n";
   if ($cfg_XMR_enabled) echo "XMR\n";
   if ($cfg_XPM_enabled) echo "XPM\n";
   if ($cfg_ZEC_enabled) echo "ZEC\n";
@@ -50,6 +51,7 @@ switch ($_SERVER['PATH_INFO']) {
      case 'LTC':
      case 'POT':
      case 'PPC':
+	 case 'TRX':
 	 case 'XMR':
      case 'XPM':
      case 'ZEC':
@@ -82,6 +84,7 @@ switch ($_SERVER['PATH_INFO']) {
      case 'LTC':
      case 'POT':
      case 'PPC':
+	 case 'TRX':
 	 case 'XMR':
      case 'XPM':
      case 'ZEC':

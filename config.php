@@ -14,10 +14,11 @@
   $cfg_DGB_enabled  = false;
   $cfg_DOGE_enabled = false;
   $cfg_ETH_enabled  = false;
-  $cfg_HORA_enabled  = false;
+  $cfg_HORA_enabled = false;
   $cfg_LTC_enabled  = false;
   $cfg_POT_enabled  = false;
   $cfg_PPC_enabled  = false;
+  $cfg_TRX_enabled  = false;
   $cfg_XMR_enabled  = false;
   $cfg_XPM_enabled  = false;
   $cfg_ZEC_enabled  = true;
@@ -34,6 +35,7 @@
   $cfg_LTC_amount  = intval((20 / 60) * $cfg_refresh_time);
   $cfg_POT_amount  = intval((200 / 60) * $cfg_refresh_time);
   $cfg_PPC_amount  = intval((25 / 60) * $cfg_refresh_time);
+  $cfg_TRX_amount  = intval((25 / 60) * $cfg_refresh_time);
   $cfg_XMR_amount = intval((20 / 60) * $cfg_refresh_time);
   $cfg_XPM_amount  = intval((200 / 60) * $cfg_refresh_time);
   $cfg_ZEC_amount  = intval((5 / 60) * $cfg_refresh_time);
@@ -56,6 +58,7 @@
   $cfg_LTC_api_key  = 'yourfaucethubapicode12345678910';
   $cfg_POT_api_key  = 'yourfaucethubapicode12345678910';
   $cfg_PPC_api_key  = 'yourfaucethubapicode12345678910';
+  $cfg_TRX_api_key  = 'yourfaucethubapicode12345678910';
   $cfg_XMR_api_key  = 'yourfaucethubapicode12345678910';
   $cfg_XPM_api_key  = 'yourfaucethubapicode12345678910';
   $cfg_ZEC_api_key  = 'yourfaucethubapicode12345678910';
